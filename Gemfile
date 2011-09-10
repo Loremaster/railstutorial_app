@@ -4,9 +4,6 @@ gem 'rails', '3.1.0'
 
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
-#gem 'sqlite3'
-#gem 'pg' #use for production on heroku
-
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -21,7 +18,7 @@ gem 'jquery-rails'
 group :development do
   gem 'rspec-rails', '2.6.1'
   gem 'therubyracer-heroku'
-  gem 'sqlite3'
+  gem 'sqlite3'             #without this gem autotest doesn't work
 end
 
 group :test do
@@ -34,8 +31,8 @@ group :test do
   gem 'autotest-growl'
 end
 
-group :production do
-  gem 'pg'
+group :production do  
+  gem 'pg'          #this gem uses with heroku
 end
 
 # Use unicorn as the web server
