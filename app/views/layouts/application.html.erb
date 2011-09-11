@@ -3,6 +3,8 @@
   <head>
     <title> <%= title %> </title>
     <%= csrf_meta_tag %>
+	<%= stylesheet_link_tag '_stylesheets/blueprint/screen', :media => 'screen' %>
+	<%= stylesheet_link_tag '_stylesheets/blueprint/print',  :media => 'print' %>
   </head>
   <body>
     <%= yield %>
