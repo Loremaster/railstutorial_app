@@ -1,3 +1,9 @@
+GIT
+  remote: git://github.com/ctran/annotate_models.git
+  revision: 634b6ac1ccf4d9f0ddfecfc8123a58adf3d20eb8
+  specs:
+    annotate (2.4.1.beta1)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -51,6 +57,11 @@ GEM
     erubis (2.7.0)
     execjs (1.2.4)
       multi_json (~> 1.0)
+    factory_girl (2.1.0)
+    factory_girl_rails (1.2.0)
+      factory_girl (~> 2.1.0)
+      railties (>= 3.0.0)
+    gravatar_image_tag (1.0.0)
     hike (1.2.1)
     i18n (0.6.0)
     jquery-rails (1.0.14)
@@ -135,11 +146,14 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  annotate!
   autotest
   autotest-fsevent
   autotest-growl
   autotest-rails-pure
   coffee-rails (~> 3.1.0)
+  factory_girl_rails
+  gravatar_image_tag
   jquery-rails
   pg
   rails (= 3.1.0)

@@ -1,5 +1,5 @@
 SampleApp::Application.routes.draw do
-  get "users/new"
+  resources :users
 
   match '/contact', :to => 'pages#contact' #Says that site.com/contact will give answer of pages#contact controller. Also that gives us map such as path_contact.
   match '/about',   :to => 'pages#about'
