@@ -1,1 +1,2 @@
-This app is sample application from chapter 3 of book http://russian.railstutorial.org/chapters/static-pages. 
+This app is sample application from the book:
+http://russian.railstutorial.org/chapters/static-pages. 
