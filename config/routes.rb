@@ -1,10 +1,16 @@
 SampleApp::Application.routes.draw do
-  resources :users
+  get "sessions/new"
 
-  match '/contact', :to => 'pages#contact' #Says that site.com/contact will give answer of pages#contact controller. Also that gives us map such as path_contact.
+  resources :users
+  resources :sessions, :only => [:new, :create, :destroy]
+
+  match '/contact', :to => 'pages#contact'                                    #Says that site.com/contact will give answer of pages#contact controller. Also that gives us map such as path_contact.
   match '/about',   :to => 'pages#about'
   match '/help',    :to => 'pages#help' 
+  
   match '/signup',  :to => 'users#new'
+  match '/signin',  :to => 'sessions#new'
+  match '/signout', :to => 'sessions#destroy'
   
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
