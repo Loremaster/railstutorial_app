@@ -2,6 +2,7 @@ source 'http://rubygems.org'
 
 gem 'rails', '3.1.0'
 gem 'gravatar_image_tag'
+gem 'will_paginate'
 
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
@@ -21,7 +22,8 @@ group :development do
   gem 'therubyracer-heroku'
   gem 'sqlite3'                                                               #Without this gem autotest doesn't work. I use it in development only because of Heroku.
   gem 'annotate', :git => 'git://github.com/ctran/annotate_models.git'        #It is patched version from github. This one works.
-  
+  #gem 'rack-ssl'
+  gem 'faker'
 end
 
 group :test do
