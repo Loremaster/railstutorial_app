@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  #before_filter :redirect_signed_user, :only => [:new, :create]
+  
   def new
     @title = "Sign in"
   end
@@ -20,4 +22,11 @@ class SessionsController < ApplicationController
     sign_out
     redirect_to root_path
   end
+  
+  # private
+  #     def redirect_signed_user
+  #       if signed_in? 
+  #         redirect_to users_path
+  #       end
+  #     end
 end

@@ -14,21 +14,29 @@ class UsersController < ApplicationController
   end
   
   def new
-    @user = User.new
-    @title = "Sign up"
+    if not signed_in? 
+      @user = User.new
+      @title = "Sign up"
+    else
+      redirect_to users_path
+    end
   end
   
   def create
-    @user = User.new(params[:user])
-    if @user.save
-        sign_in @user                                                         #Sign user in. We are using Session Helper for that.
-        flash[:success] = "Welcome to the Sample App!"                        #Flash message, appear once.
-        redirect_to @user
-    else
-        @user.password = ''                                                   #It doesn't look like it clear password. I still able to see it with rails debug... 
-        @title = "Sign up"
-        render 'new'
-    end
+   if not signed_in? 
+     @user = User.new(params[:user])
+        if @user.save
+            sign_in @user                                                         #Sign user in. We are using Session Helper for that.
+            flash[:success] = "Welcome to the Sample App!"                        #Flash message, appear once.
+            redirect_to @user
+        else
+            @user.password = ''                                                   #It doesn't look like it clear password. I still able to see it with rails debug... 
+            @title = "Sign up"
+            render 'new'
+        end
+   else
+     redirect_to users_path
+   end
   end
 
   def edit
@@ -48,13 +56,19 @@ class UsersController < ApplicationController
   end
   
   def destroy
-    User.find(params[:id]).destroy
-    flash[:success] = "User destroyed."
-    redirect_to users_path
+    user_to_delete = User.find( params[:id] )
+    if ( current_user.id != user_to_delete.id )  
+      user_to_delete.destroy
+      flash[:success] = "User destroyed."
+    else
+      flash[:error] = "You can't delete yourself."
+    end
+    
+    redirect_to users_path                                                    #it is important to use this in both cases 
   end
   
   private
-    def authenticate
+    def authenticate                                                          #using in before_filter
       deny_access unless signed_in?
     end  
     

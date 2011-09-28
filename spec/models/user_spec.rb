@@ -29,7 +29,7 @@ describe User do
 
   it "should require a name" do
     no_name_user = User.new(@attr.merge(:name => ""))
-    no_name_user.should_not be_valid                          #no_name_user.valid?.should_not == true
+    no_name_user.should_not be_valid                                          #no_name_user.valid?.should_not == true
   end
   
   it "should require an email address" do

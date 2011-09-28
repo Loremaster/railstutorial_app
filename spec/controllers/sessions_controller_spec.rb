@@ -13,6 +13,13 @@ describe SessionsController do
       get :new
       response.should have_selector("title", :content => "Sign in")
     end
+    
+    # describe "for signed users" do
+    #       it "should deny access to sign in again" do
+    #         get :new
+    #         response.should render_template( 'sessions/new' )
+    #       end
+    #     end
   end
   
   describe "POST 'create'" do

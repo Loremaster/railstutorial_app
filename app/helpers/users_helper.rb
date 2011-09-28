@@ -4,4 +4,8 @@ module UsersHelper
                                                :class => 'gravatar',
                                                :gravatar => options )
   end
+  
+  def number_of_users
+    User.all.count
+  end
 end
