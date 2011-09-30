@@ -2,7 +2,8 @@ SampleApp::Application.routes.draw do
   get "sessions/new"
 
   resources :users
-  resources :sessions, :only => [:new, :create, :destroy]
+  resources :sessions,   :only => [:new, :create, :destroy]
+  resources :microposts, :only => [:create, :destroy]                         #Gives POST and DELETE.
 
   match '/contact', :to => 'pages#contact'                                    #Says that site.com/contact will give answer of pages#contact controller. Also that gives us map such as path_contact.
   match '/about',   :to => 'pages#about'

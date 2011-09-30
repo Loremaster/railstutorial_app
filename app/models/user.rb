@@ -16,6 +16,7 @@
 class User < ActiveRecord::Base
   attr_accessor   :password
   attr_accessible :name, :email, :password, :password_confirmation
+  has_many        :microposts, :dependent => :destroy                         #option :dependent => :destroy delete posts of user.
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i                          #Regex to check mail.
   
   validates :name,  :presence   => true,
@@ -32,6 +33,10 @@ class User < ActiveRecord::Base
   before_save :encrypt_password                                               #This stuff calls "callback". We register variable by sending him to "before_save" 
                                                                               #Then we create method with such name.
                                                                               #Active Record will call this method before saving record (in db)
+                                                                              
+  def feed
+    Micropost.where( "user_id = ?", id )                                      # "?" in "user_id = ?" escaping before ncluding in SQL querry.
+  end                                                                            
   
   # Return true if the user's password matches the submitted password.
   def has_password?( submitted_password )
