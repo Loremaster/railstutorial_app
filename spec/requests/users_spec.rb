@@ -59,7 +59,53 @@ describe "Users" do
             controller.should_not be_signed_in
           end
         end
-      end 
+    end 
+  end
+  
+  describe "for sign-in user" do
+    it "should have right form of 'Micropost' for 0, 1 and 2 microposts" do
+      user = Factory(:user)
+         
+      visit signin_path
+      fill_in :email,    :with => user.email
+      fill_in :password, :with => user.password
+      click_button 
+      visit root_path
+            
+      num_of_user_posts = user.microposts.count
+      response.should have_selector("div.user_info",
+                                     :content => num_of_user_posts.to_s + " microposts")
+      
+      fill_in :micropost_content, :with => "My 1st post!"
+      click_button
+      num_of_user_posts = user.microposts.count
+      response.should have_selector("div.user_info",
+                                     :content => num_of_user_posts.to_s + " micropost")
+                                     
+      fill_in :micropost_content, :with => "My 2nd post!"
+      click_button
+      num_of_user_posts = user.microposts.count
+      response.should have_selector("div.user_info",
+                                     :content => num_of_user_posts.to_s + " microposts")
+    end  
+
+    it "should have no links to delete message on paseg of other users" do
+      first  = Factory(:user, :name => "Bob", :email => "another@example.com")
+      second = Factory(:user, :name => "Tom", :email => "last@example.com")
+      
+      first.microposts.create(:content  => "Test message of first user.")
+      second.microposts.create(:content => "Test message of second user.")
+             
+      visit signin_path
+      fill_in :email,    :with => first.email
+      fill_in :password, :with => first.password
+      click_button
+      
+      visit user_path( 2 )
+  
+      response.should_not have_selector("table.microposts", 
+                                        :content => "delete")
+    end
   end
 end
 

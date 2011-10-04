@@ -55,23 +55,48 @@ describe UsersController do
                                              :content => "Next")
         end
         
-         it "should deny access to register new user" do
-           get 'new'
-           response.should redirect_to( users_path )
-         end    
+        it "should deny access to register new user" do
+          get 'new'
+          response.should redirect_to( users_path )
+        end    
          
-         it "should deny access to create new user" do
-            get 'create'
-            response.should redirect_to( users_path )
+        it "should deny access to create new user" do
+          get 'create'
+          response.should redirect_to( users_path )
         end
-        
+   
       end
   end
   
   describe "GET 'show'" do
       before(:each) do
-        @user = Factory(:user)                                                #Create uers by using factory from spec/factories.rb
+        @user  = Factory(:user)                                               # Create user by using factory from spec/factories.rb 
+        50.times do
+          @user.microposts << Factory(:micropost, 
+                                      :user => @user, 
+                                      :content => "Foo bar")         
+        end
       end
+      
+      describe "for signed-in users" do
+        it "should have right number of microposts in sidebar on profile" do
+          get :show, :id => @user
+          num_of_user_posts = @user.microposts.count
+          response.should have_selector("table.profile",                      
+                                         :content => "Microposts " + num_of_user_posts.to_s)
+        end
+        
+        it "should paginate microposts" do
+          get :show, :id => @user
+          response.should have_selector("div.pagination")
+          response.should have_selector("span.disabled", :content => "Previous")
+          response.should have_selector("a", :href => "/users/1?page=2",
+                                             :content => "2")
+          response.should have_selector("a", :href => "/users/1?page=2",
+                                             :content => "Next")
+        end
+      end
+
 
       it "should be successful" do
         get :show, :id => @user                                               # :show and 'show' are equal. :id => @use equal :id => @user.id
