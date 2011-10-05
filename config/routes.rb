@@ -2,8 +2,9 @@ SampleApp::Application.routes.draw do
   get "sessions/new"
 
   resources :users
-  resources :sessions,   :only => [:new, :create, :destroy]
-  resources :microposts, :only => [:create, :destroy]                         #Gives POST and DELETE.
+  resources :sessions,      :only => [:new, :create, :destroy]
+  resources :microposts,    :only => [:create, :destroy]                      #Gives POST and DELETE.
+  resources :relationships, :only => [:create, :destroy]
 
   match '/contact', :to => 'pages#contact'                                    #Says that site.com/contact will give answer of pages#contact controller. Also that gives us map such as path_contact.
   match '/about',   :to => 'pages#about'
@@ -15,6 +16,12 @@ SampleApp::Application.routes.draw do
   
   resources :users do
       resources :microposts
+  end
+  
+  resources :users do
+     member do
+       get :following, :followers
+     end
   end
   
   # You can have the root of your site routed with "root"

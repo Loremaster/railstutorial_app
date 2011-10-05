@@ -11,12 +11,25 @@
 #  updated_at         :datetime
 #  encrypted_password :string(255)
 #  salt               :string(255)
+#  admin              :boolean         default(FALSE)
 #
 
 class User < ActiveRecord::Base
   attr_accessor   :password
   attr_accessible :name, :email, :password, :password_confirmation
-  has_many        :microposts, :dependent => :destroy                         #option :dependent => :destroy delete posts of user.
+  
+  belongs_to      :follower, :class_name => "User"
+  belongs_to      :followed, :class_name => "User"
+  
+  has_many :microposts, :dependent => :destroy                               #option :dependent => :destroy delete posts of user.
+  has_many :relationships, :foreign_key => "follower_id",
+                           :dependent => :destroy                               
+  has_many :following, :through => :relationships, :source => :followed
+  has_many :reverse_relationships, :foreign_key => "followed_id",
+                                   :class_name  => "Relationship",
+                                   :dependent   => :destroy
+  has_many :followers, :through => :reverse_relationships, :source => :follower
+                                  
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i                          #Regex to check mail.
   
   validates :name,  :presence   => true,
@@ -35,7 +48,8 @@ class User < ActiveRecord::Base
                                                                               #Active Record will call this method before saving record (in db)
                                                                               
   def feed
-    Micropost.where( "user_id = ?", id )                                      # "?" in "user_id = ?" escaping before ncluding in SQL querry.
+    #Micropost.where( "user_id = ?", id )                                      # "?" in "user_id = ?" escaping before ncluding in SQL querry.
+    Micropost.from_users_followed_by(self)
   end                                                                            
   
   # Return true if the user's password matches the submitted password.
@@ -55,6 +69,18 @@ class User < ActiveRecord::Base
     user = find_by_id( id )
     ( user && user.salt == cookie_salt ) ? user : nil                         #return user if user is not nil and user.salt == cookie_salt
   end
+    
+  def following?(followed)
+    relationships.find_by_followed_id(followed)
+  end
+
+  def follow!(followed)
+    relationships.create!(:followed_id => followed.id)
+  end 
+  
+  def unfollow!(followed)
+    relationships.find_by_followed_id(followed).destroy
+  end 
     
   private 
     def encrypt_password
