@@ -90,8 +90,8 @@ describe "Users" do
     end  
 
     it "should have no links to delete message on paseg of other users" do
-      first  = Factory(:user, :name => "Bob", :email => "another@example.com")
-      second = Factory(:user, :name => "Tom", :email => "last@example.com")
+      first  = Factory(:user, :name => "Bob", :email => "ohno@example.com")
+      second = Factory(:user, :name => "Tom", :email => "lost@example.com")
       
       first.microposts.create(:content  => "Test message of first user.")
       second.microposts.create(:content => "Test message of second user.")

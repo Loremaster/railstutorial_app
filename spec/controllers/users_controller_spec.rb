@@ -18,9 +18,9 @@ describe UsersController do
         before(:each) do
           @user = test_sign_in( Factory(:user) )
           second = Factory( :user, :name => "Bob", 
-                                   :email => "another@example.com" )
+                                   :email => "an@example.com" )
           third  = Factory( :user, :name => "Ben", 
-                                   :email => "another@example.net")
+                                   :email => "ano@example.net")
 
           @users = [@user, second, third]
           30.times do
@@ -79,6 +79,11 @@ describe UsersController do
       end
       
       describe "for signed-in users" do
+        before(:each) do
+          other_user = Factory(:user, :email => Factory.next(:email))
+          other_user.follow!(@user)
+        end
+        
         it "should have right number of microposts in sidebar on profile" do
           get :show, :id => @user
           num_of_user_posts = @user.microposts.count
@@ -90,10 +95,18 @@ describe UsersController do
           get :show, :id => @user
           response.should have_selector("div.pagination")
           response.should have_selector("span.disabled", :content => "Previous")
-          response.should have_selector("a", :href => "/users/1?page=2",
+          response.should have_selector("a", :href => "/users/6?page=2",
                                              :content => "2")
-          response.should have_selector("a", :href => "/users/1?page=2",
+          response.should have_selector("a", :href => "/users/6?page=2",
                                              :content => "Next")
+        end
+        
+        it "should have right follower/following counts" do
+          get :show, :id => @user
+          response.should have_selector("a", :href => following_user_path(@user),
+                                                     :content => "0 following")
+          response.should have_selector("a", :href => followers_user_path(@user),
+                                                     :content => "1 follower")
         end
       end
 
