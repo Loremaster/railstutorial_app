@@ -2,7 +2,23 @@ require 'spec_helper'
 
 describe UsersController do
   render_views
-  
+
+  describe "For users after signing-up" do
+    before(:each) do
+      @user_one = Factory( :user, :name  => "Tuomas",
+                                  :email => "aim@tuomas.com" )
+      @user_two = Factory( :user, :name  => "Tarja",
+                                  :email => "aim@tarja.com" )
+    end
+
+    it "should send an e-mail about registration to correct person" do
+      UserMailer.registration_confirmation(@user_one).deliver
+      ActionMailer::Base.deliveries.last.to.should     == [@user_one.email]
+      ActionMailer::Base.deliveries.last.to.should_not == [@user_two.email]
+    end
+  end
+
+
   describe "GET 'index'" do
 
       describe "for non-signed-in users" do

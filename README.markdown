@@ -3,6 +3,16 @@ http://russian.railstutorial.org/chapters/static-pages.
 
 Version 1.0.0
 
+ - Added sending notification about registration to users.
+
+ - Also added tests for mails
+    user_controller_spec updated
+
+    user_mailer_spec updated
+
+
+------------------------------------------------------------------------------
+
 In this version after 'bundle update' i got weird errors with Rspec and strange error on server startup.
 
  - I fixed error on startup by adding in Gemfile
