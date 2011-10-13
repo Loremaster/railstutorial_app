@@ -1,10 +1,15 @@
 require "spec_helper"
 
 describe UserMailer do
-  #pending "add some examples to (or delete) #{__FILE__}"
+
+  before(:each) do
+    @address_of_sender = ['from@example.com']
+  end
+
   describe "Letter about registration for new users" do
-      let(:user) { mock_model(User, :name => 'Lucas', :email => 'lucas@email.com') }   #WHAT is that?
-      let(:mail) { UserMailer.registration_confirmation(user).deliver }                #    and that?
+      let(:user) { mock_model(User, :name  => 'Lucas',
+                                    :email => 'lucas@email.com') }
+      let(:mail) { UserMailer.registration_confirmation(user).deliver }
 
       it "should have correct subject form" do
         mail.subject.should == 'Registered'
@@ -15,12 +20,34 @@ describe UserMailer do
       end
 
       it "should have correct address of sender" do
-        mail.from.should == ['from@example.com']
+        mail.from.should == @address_of_sender
       end
 
       it "should have name of user inside of letter" do
         mail.body.encoded.should match( user.name )
       end
+  end
+
+  describe "Letter about new followers" do
+    let(:user2) { mock_model( User, :name => 'John',
+                                    :email=> 'john@email.com' ) }
+    let(:mail_about_followers) { UserMailer.new_follower_notification( user2 ) }
+
+    it "should have correct subject form" do
+      mail_about_followers.subject.should == 'New follower'
+    end
+
+    it "should have address of receiver" do
+      mail_about_followers.to.should == [ user2.email ]
+    end
+
+    it "should have correct address of sender" do
+      mail_about_followers.from.should == @address_of_sender
+    end
+
+    it "should have name of user inside of letter" do
+      mail_about_followers.body.encoded.should match( user2.name )
+    end
   end
 
 end

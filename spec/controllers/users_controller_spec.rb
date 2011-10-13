@@ -6,9 +6,11 @@ describe UsersController do
   describe "For users after signing-up" do
     before(:each) do
       @user_one = Factory( :user, :name  => "Tuomas",
-                                  :email => "aim@tuomas.com" )
+                                  :email => "aim@tuomas.com",
+                                  :send_mail_about_followers => true )
       @user_two = Factory( :user, :name  => "Tarja",
-                                  :email => "aim@tarja.com" )
+                                  :email => "aim@tarja.com",
+                                  :send_mail_about_followers => false )
     end
 
     it "should send an e-mail about registration to correct person" do
@@ -111,9 +113,9 @@ describe UsersController do
           get :show, :id => @user
           response.should have_selector("div.pagination")
           response.should have_selector("span.disabled", :content => "Previous")
-          response.should have_selector("a", :href => "/users/6?page=2",
+          response.should have_selector("a", :href => "/users/1?page=2",
                                              :content => "2")
-          response.should have_selector("a", :href => "/users/6?page=2",
+          response.should have_selector("a", :href => "/users/1?page=2",
                                              :content => "Next")
         end
         

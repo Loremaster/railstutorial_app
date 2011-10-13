@@ -1,7 +1,8 @@
 <h1>Edit user</h1>
 
 <%= form_for( @user ) do |f| %>
-  <%= render 'fields', :f => f %>																							<%# We use :object => f.object to make partialwork for us. It ctreates variable "object" in partial%>
+  <%= render 'fields', 			      :f => f %>																<%# We use :object => f.object to make partialwork for us. It ctreates variable "object" in partial%>
+  <%= render 'notification_settings', :f => f%>
   <div class="actions">
     <%= f.submit "Update" %>
   </div>

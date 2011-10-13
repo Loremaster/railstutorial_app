@@ -23,6 +23,12 @@ def make_users
                  :password => password,
                  :password_confirmation => password)
   end
+
+
+  all_users = User.all
+  all_users.each do |usr|
+    PreferencesOfUsers.create!(:user_id  => usr.id)
+  end
 end
 
 def make_microposts

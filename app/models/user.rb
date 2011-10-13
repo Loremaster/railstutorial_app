@@ -4,23 +4,29 @@
 #
 # Table name: users
 #
-#  id                 :integer         not null, primary key
-#  name               :string(255)
-#  email              :string(255)
-#  created_at         :datetime
-#  updated_at         :datetime
-#  encrypted_password :string(255)
-#  salt               :string(255)
-#  admin              :boolean         default(FALSE)
+#  id                        :integer         not null, primary key
+#  name                      :string(255)
+#  email                     :string(255)
+#  created_at                :datetime
+#  updated_at                :datetime
+#  encrypted_password        :string(255)
+#  salt                      :string(255)
+#  admin                     :boolean         default(FALSE)
+#  send_mail_about_followers :boolean         default(TRUE)
 #
 
 class User < ActiveRecord::Base
   attr_accessor   :password
-  attr_accessible :name, :email, :password, :password_confirmation
+  
+  attr_accessible :name, 
+                  :email, 
+                  :password,
+                  :password_confirmation,
+                  :send_mail_about_followers
   
   belongs_to      :follower, :class_name => "User"
   belongs_to      :followed, :class_name => "User"
-  
+
   has_many :microposts, :dependent => :destroy                               #option :dependent => :destroy delete posts of user.
   has_many :relationships, :foreign_key => "follower_id",
                            :dependent => :destroy                               

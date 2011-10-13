@@ -43,8 +43,8 @@ class UsersController < ApplicationController
         if @user.save
             sign_in @user                                                     #Sign user in. We are using Session Helper for that.
             flash[:success] = "Welcome to the Sample App!"                    #Flash message, appear once.
-            redirect_to @user
             UserMailer.registration_confirmation(@user).deliver
+            redirect_to @user
         else
             @user.password = ''                                               #It doesn't look like it clear password. I still able to see it with rails debug...
             @title = "Sign up"

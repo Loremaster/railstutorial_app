@@ -106,6 +106,24 @@ describe "Users" do
       response.should_not have_selector("table.microposts", 
                                         :content => "delete")
     end
+
+#    describe "notification settings" do
+#      before(:each) do
+#        @user_one = Factory( :user, :name  => "Tuomas",
+#                                  :email => "aim@tuomas.com",
+#                                  :send_mail_about_followers => true )
+#        @user_two = Factory( :user, :name  => "Tarja",
+#                                  :email => "aim@tarja.com",
+#                                  :send_mail_about_followers => false )
+#      end
+#
+#      it "should send notification about new follower by defult" do
+#        visit signin_path
+#        fill_in :email,    :with => @user_one.email
+#        fill_in :password, :with => @user_one.password
+#        click_button
+#      end
+#    end
   end
 end
 

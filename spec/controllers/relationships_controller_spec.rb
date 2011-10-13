@@ -16,25 +16,25 @@ describe RelationshipsController do
   end
 
   describe "POST 'create'" do
-
-    before(:each) do
-      @user = test_sign_in(Factory(:user))
-      @followed = Factory(:user, :email => Factory.next(:email))
-    end
-
-    it "should create a relationship" do
-      lambda do
-        post :create, :relationship => { :followed_id => @followed }
-        response.should be_redirect
-      end.should change(Relationship, :count).by(1)
-    end
-    
-    it "should create a relationship using Ajax" do
-      lambda do
-        xhr :post, :create, :relationship => { :followed_id => @followed }
-        response.should be_success
-      end.should change(Relationship, :count).by(1)
-    end
+  
+      before(:each) do
+        @user = test_sign_in(Factory(:user))
+        @followed = Factory(:user, :email => Factory.next(:email))
+      end
+  
+      it "should create a relationship" do
+        lambda do
+          post :create, :relationship => { :followed_id => @followed }
+          response.should be_redirect
+        end.should change(Relationship, :count).by(1)
+      end
+      
+      it "should create a relationship using Ajax" do
+        lambda do
+          xhr :post, :create, :relationship => { :followed_id => @followed }
+          response.should be_success
+        end.should change(Relationship, :count).by(1)
+      end
   end
 
   describe "DELETE 'destroy'" do
