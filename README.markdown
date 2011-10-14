@@ -3,18 +3,19 @@ http://russian.railstutorial.org/chapters/static-pages.
 
 Version 1.0.0
 
-TODO: Write tests for users notification. And understand how remove table users_preferenses
-and column notificate_about_new_followers.
-
- - Fixed few errors which caused by calling ramoved row from db.
-
  - Added notification via email about new followers.
-    Added users settings about this notification.
+    - Added users settings about this notification.
 
- - Added test for correct form of mail of notification about new followers.
-    Test added in spec/mailers/user_mailer_spec.rb
+ - Tests:
+    - Added test to check functionality of notifications about new followers in 'spec/ruquests/users_spec.rb'
 
- - Minor: deleted 'column notificate_about_new_followers' from user model.
+    - Added test for correct form of mail of notification about new followers.
+      Test added in spec/mailers/user_mailer_spec.rb
+
+ - Minor:
+    - Deleted 'column notificate_about_new_followers' from user model.
+
+    - Fixed few errors which caused by calling ramoved row from db.
 
 ------------------------------------------------------------------------------
 
