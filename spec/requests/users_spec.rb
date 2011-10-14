@@ -107,23 +107,54 @@ describe "Users" do
                                         :content => "delete")
     end
 
-#    describe "notification settings" do
-#      before(:each) do
-#        @user_one = Factory( :user, :name  => "Tuomas",
-#                                    :email => "aim@tuomas.com")
-#        @user_two = Factory( :user, :name  => "Tarja",
-#                                    :email => "aim@tarja.com")
-#      end
-#
-#      it "should send notification about new follower by default" do
-#        visit signin_path
-#        fill_in :email,    :with => @user_one.email
-#        fill_in :password, :with => @user_one.password
-#        click_button
-#
-#        visit edit_user_path( @user_one.id )
-#      end
-#    end
+    describe "notification settings" do
+      before(:each) do
+        @user_one = Factory( :user, :name  => "Tuomas",
+                                    :email => "aim@tuomas.com")
+        @user_two = Factory( :user, :name  => "Tarja",
+                                    :email => "aim@tarja.com")
+      end
+
+      it "should send notification about new follower by default" do
+        visit signin_path
+        fill_in :email,    :with => @user_one.email
+        fill_in :password, :with => @user_one.password
+        click_button
+
+        visit user_path( @user_two.id )
+        click_button
+
+        ActionMailer::Base.deliveries.last.to.should == [@user_two.email]     #Followed user(num-2) should be notificated.
+      end
+
+      it "should deny send notification about new follower if such setiing is off" do
+
+        #First User
+        visit signin_path
+        fill_in :email,    :with => @user_one.email
+        fill_in :password, :with => @user_one.password
+        click_button
+
+        visit edit_user_path( @user_one.id )
+        fill_in :email,    :with => @user_one.email
+        fill_in :password, :with => @user_one.password
+        uncheck('user_notification_about_new_followers')                      #User-1 chooses about not confirming him about new followers
+        click_button
+
+        visit signout_path
+
+        #Second User
+        visit signin_path
+        fill_in :email,    :with => @user_two.email
+        fill_in :password, :with => @user_two.password
+        click_button
+
+        visit user_path( @user_one.id )
+        click_button
+
+        response.should_not render_template('user_mailer/new_follower_notification.text.erb')  #if it doesn't render then mail will not send.
+      end
+    end
   end
 end
 

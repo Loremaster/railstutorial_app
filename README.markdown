@@ -6,6 +6,8 @@ Version 1.0.0
 TODO: Write tests for users notification. And understand how remove table users_preferenses
 and column notificate_about_new_followers.
 
+ - Fixed few errors which caused by calling ramoved row from db.
+
  - Added notification via email about new followers.
     Added users settings about this notification.
 
