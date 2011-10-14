@@ -110,18 +110,18 @@ describe "Users" do
 #    describe "notification settings" do
 #      before(:each) do
 #        @user_one = Factory( :user, :name  => "Tuomas",
-#                                  :email => "aim@tuomas.com",
-#                                  :send_mail_about_followers => true )
+#                                    :email => "aim@tuomas.com")
 #        @user_two = Factory( :user, :name  => "Tarja",
-#                                  :email => "aim@tarja.com",
-#                                  :send_mail_about_followers => false )
+#                                    :email => "aim@tarja.com")
 #      end
 #
-#      it "should send notification about new follower by defult" do
+#      it "should send notification about new follower by default" do
 #        visit signin_path
 #        fill_in :email,    :with => @user_one.email
 #        fill_in :password, :with => @user_one.password
 #        click_button
+#
+#        visit edit_user_path( @user_one.id )
 #      end
 #    end
   end

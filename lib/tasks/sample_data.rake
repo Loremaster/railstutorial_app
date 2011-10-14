@@ -25,10 +25,10 @@ def make_users
   end
 
 
-  all_users = User.all
-  all_users.each do |usr|
-    PreferencesOfUsers.create!(:user_id  => usr.id)
-  end
+#  all_users = User.all
+#  all_users.each do |usr|
+#    PreferencesOfUsers.create!(:user_id  => usr.id)
+#  end
 end
 
 def make_microposts

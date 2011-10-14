@@ -1,5 +1,5 @@
 <%= render 'shared/error_messages', :object => f.object %>
 <div class="checkbox">
-    <%= f.check_box :send_mail_about_followers %>                        <%# UsersPreferences.find_by_user_id(@user.id).notificate_about_new_followers? %>
+    <%= f.check_box :notification_about_new_followers %>                        <%# UsersPreferences.find_by_user_id(@user.id).notificate_about_new_followers? %>
     <%= f.label     'Notify via email about new followers' %><br />
 </div>

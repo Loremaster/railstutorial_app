@@ -4,15 +4,15 @@
 #
 # Table name: users
 #
-#  id                        :integer         not null, primary key
-#  name                      :string(255)
-#  email                     :string(255)
-#  created_at                :datetime
-#  updated_at                :datetime
-#  encrypted_password        :string(255)
-#  salt                      :string(255)
-#  admin                     :boolean         default(FALSE)
-#  send_mail_about_followers :boolean         default(TRUE)
+#  id                               :integer         not null, primary key
+#  name                             :string(255)
+#  email                            :string(255)
+#  created_at                       :datetime
+#  updated_at                       :datetime
+#  encrypted_password               :string(255)
+#  salt                             :string(255)
+#  admin                            :boolean         default(FALSE)
+#  notification_about_new_followers :boolean         default(TRUE)
 #
 
 class User < ActiveRecord::Base
@@ -22,7 +22,7 @@ class User < ActiveRecord::Base
                   :email, 
                   :password,
                   :password_confirmation,
-                  :send_mail_about_followers
+                  :notification_about_new_followers
   
   belongs_to      :follower, :class_name => "User"
   belongs_to      :followed, :class_name => "User"
