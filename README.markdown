@@ -13,6 +13,8 @@ Version 1.0.0
       Test added in spec/mailers/user_mailer_spec.rb
 
  - Minor:
+    - Edited view of mail about new followers to provide more information.
+
     - Deleted 'column notificate_about_new_followers' from user model.
 
     - Fixed few errors which caused by calling ramoved row from db.

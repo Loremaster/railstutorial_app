@@ -29,9 +29,12 @@ describe UserMailer do
   end
 
   describe "Letter about new followers" do
-    let(:user2) { mock_model( User, :name => 'John',
-                                    :email=> 'john@email.com' ) }
-    let(:mail_about_followers) { UserMailer.new_follower_notification( user2 ) }
+    let(:user2)             { mock_model( User, :name => 'John',
+                                                :email=> 'john@email.com' ) }
+    let(:follower_of_user2) { mock_model( User, :name => 'Micle',
+                                                :email=> 'mic@email.com' ) }
+    let(:mail_about_followers) { UserMailer.new_follower_notification( user2,
+                                                                       follower_of_user2 ) }
 
     it "should have correct subject form" do
       mail_about_followers.subject.should == 'New follower'

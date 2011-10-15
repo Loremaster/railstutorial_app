@@ -1,0 +1,7 @@
+<p>
+  <%= @user.name %>,
+</p>
+
+<p><strong><%= link_to "#{@new_follower.name}", user_url(@new_follower.id) %></strong> is your follower now!</p>
+<p>----</p>
+<p>You can always turn off this notification in your <%= link_to "settings", edit_user_url(@user) %> </p>

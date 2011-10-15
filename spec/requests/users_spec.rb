@@ -152,7 +152,7 @@ describe "Users" do
         visit user_path( @user_one.id )
         click_button
 
-        response.should_not render_template('user_mailer/new_follower_notification.text.erb')  #if it doesn't render then mail will not send.
+        response.should_not render_template('user_mailer/new_follower_notification.html.erb')  #if it doesn't render then mail will not send.
       end
     end
   end

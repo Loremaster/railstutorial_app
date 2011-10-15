@@ -8,8 +8,9 @@ class UserMailer < ActionMailer::Base
     mail(:to => "#{user.name} <#{user.email}>", :subject => "Registered")
   end
 
-  def new_follower_notification( user )
+  def new_follower_notification( user, new_follower )
     @user = user
+    @new_follower = new_follower
     mail( :to => "#{user.name} <#{user.email}>", :subject => "New follower" )
   end
 end
