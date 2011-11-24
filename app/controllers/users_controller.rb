@@ -1,17 +1,24 @@
 class UsersController < ApplicationController
-  before_filter :authenticate, :except => [:show, :new, :create]              #calls authenticate before calling params
-  before_filter :correct_user, :only => [:edit, :update]
-  before_filter :admin_user,   :only => :destroy
+  before_filter :authenticate, :except => [ :show, :new, :create ]            #calls authenticate before calling params
+  before_filter :correct_user, :only   => [ :edit, :update]
+  before_filter :admin_user,   :only   =>   :destroy
   
   def index
     @title = "All users"
-    @users = User.paginate(:page => params[:page])
+    @users = User.paginate( :page => params[:page] )
   end
-  
+
   def show
     @user  = User.find( params[:id] )
     @title = @user.name                                                       #in Rails 3 it is not potential problem because of Rails 3.0 all Embedded Ruby text is escaped by default.
-    @microposts = @user.microposts.paginate(:page => params[:page])
+    @microposts = @user.microposts.paginate( :page => params[:page] )
+
+    #RENDER: HTML
+    #        RSS
+    #respond_to do |format|
+#      format.html
+#      format.rss { render :layout => false }                                  #index.rss.builder is by default, so FALSE lets us change it.
+#    end
   end
   
   def new
@@ -22,7 +29,7 @@ class UsersController < ApplicationController
       redirect_to users_path
     end
   end
-  
+
   def following
     @title = "Following"
     @user = User.find(params[:id])
@@ -41,9 +48,9 @@ class UsersController < ApplicationController
    if not signed_in? 
      @user = User.new(params[:user])
         if @user.save
-            sign_in @user                                                     #Sign user in. We are using Session Helper for that.
+            sign_in @user                                                     #Sign user in. We use Session Helper for that.
             flash[:success] = "Welcome to the Sample App!"                    #Flash message, appear once.
-            UserMailer.registration_confirmation(@user).deliver
+            UserMailer.registration_confirmation( @user ).deliver
             redirect_to @user
         else
             @user.password = ''                                               #It doesn't look like it clear password. I still able to see it with rails debug...

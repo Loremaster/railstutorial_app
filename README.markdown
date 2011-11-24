@@ -3,6 +3,15 @@ http://russian.railstutorial.org/chapters/static-pages.
 
 Version 1.0.0
 
+ - Added rss feed of user on his page (profile page).
+    - Added views/users/show.rss.builder to generate xml of rss feed.
+
+    - Added link in /views/shared/_user_info_and_stats.html.erb
+
+    - Test DID NOT added!
+
+------------------------------------------------------------------------------
+
  - Added notification via email about new followers.
     - Added users settings about this notification.
 
