@@ -13,6 +13,8 @@ class UsersController < ApplicationController
     @title = @user.name                                                       #in Rails 3 it is not potential problem because of Rails 3.0 all Embedded Ruby text is escaped by default.
     @microposts = @user.microposts.paginate( :page => params[:page] )
 
+    #Looks like we don't need to use this block in Rails 3.1.0
+
     #RENDER: HTML
     #        RSS
     #respond_to do |format|
