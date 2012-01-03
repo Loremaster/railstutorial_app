@@ -156,6 +156,52 @@ describe "Users" do
       end
     end
   end
+
+
+  #RSS
+  describe "RSS for registered user" do
+    before(:each) do
+        @user_one = Factory( :user, :name  => "Mike",
+                                    :email => "aim@mike.com")
+    end
+
+    #Not really sure that it is correct but autotest tells me that there is no "users/show.html.erb" or "users/show.rss.builder"
+    it "should show rss feed for registered users" do
+      visit signin_path
+      fill_in :email,    :with => @user_one.email
+      fill_in :password, :with => @user_one.password
+      click_button
+
+      visit root_path
+      fill_in :micropost_content, :with => "My 1st post!"
+      click_button
+
+      visit user_path( @user_one.id )
+      click_link "Feed"
+      response.should render_template('users/show')
+    end
+
+    describe "GET RSS feed for first user" do
+      it "returns an RSS feed" do
+        get "users/1", :format => "rss"
+        response.should be_success
+        response.should render_template("users/show")
+        response.content_type.should eq("application/rss+xml")
+      end
+    end
+  end
+
+
+
+#  describe "RSS for unregistered user" do
+#
+#    #Not really sure that it is correct but autotest tells me that there is no "users/show.html.erb" or "users/show.rss.builder"
+#    it "should show rss feed for unregistered users" do
+#      visit user_path( 1 )
+#      click_link "Feed"
+#      response.should render_template('users/show')
+#    end
+#  end
 end
 
 
