@@ -22,7 +22,8 @@ gem 'jquery-rails'
 group :development do
   gem 'rspec-rails', '2.6.1'
   gem 'therubyracer-heroku'
-  gem 'sqlite3'                                                               #Without this gem autotest doesn't work. I use it in development only because of Heroku.
+  gem 'pg'
+  #gem 'sqlite3'                                                               #Without this gem autotest doesn't work. I use it in development only because of Heroku.
   gem 'annotate', :git => 'git://github.com/ctran/annotate_models.git'        #It is patched version from github. This one works.
   #gem 'rack-ssl'
   gem 'faker'                                                                 #automating filling db by test data.

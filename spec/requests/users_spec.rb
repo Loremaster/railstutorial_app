@@ -33,7 +33,7 @@ describe "Users" do
           response.should render_template('users/show')
         end.should change(User, :count).by(1)
       end
-    end 
+    end
     
     describe "sign in/out" do
       
@@ -101,7 +101,7 @@ describe "Users" do
       fill_in :password, :with => first.password
       click_button
       
-      visit user_path( 2 )
+      visit user_path( second.id )
   
       response.should_not have_selector("table.microposts", 
                                         :content => "delete")
@@ -165,6 +165,13 @@ describe "Users" do
                                     :email => "aim@mike.com")
     end
 
+    it "should return an RSS feed" do
+        get user_path( @user_one.id ), :format => "rss"
+        response.should be_success
+        response.should render_template("users/show")
+        response.content_type.should eq("application/rss+xml")
+    end
+
     #Not really sure that it is correct but autotest tells me that there is no "users/show.html.erb" or "users/show.rss.builder"
     it "should show rss feed for registered users" do
       visit signin_path
@@ -181,27 +188,15 @@ describe "Users" do
       response.should render_template('users/show')
     end
 
-    describe "GET RSS feed for first user" do
-      it "returns an RSS feed" do
-        get "users/1", :format => "rss"
-        response.should be_success
-        response.should render_template("users/show")
-        response.content_type.should eq("application/rss+xml")
-      end
-    end
+    #describe "GET RSS feed for first user" do
+#      it "returns an RSS feed" do
+#        get "users/1", :format => "rss"
+#        response.should be_success
+#        response.should render_template("users/show")
+#        response.content_type.should eq("application/rss+xml")
+#      end
+    #end
   end
-
-
-
-#  describe "RSS for unregistered user" do
-#
-#    #Not really sure that it is correct but autotest tells me that there is no "users/show.html.erb" or "users/show.rss.builder"
-#    it "should show rss feed for unregistered users" do
-#      visit user_path( 1 )
-#      click_link "Feed"
-#      response.should render_template('users/show')
-#    end
-#  end
 end
 
 

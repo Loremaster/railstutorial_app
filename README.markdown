@@ -1,5 +1,12 @@
 #**Version 1.0.1**
 
+ - Switched from sqlite to PostgreSQL. Few tests has edited because few new errors appears.
+
+   - *HINT*: It looks like that postgre doesn't like things like that 'get 'user/1' '.
+         To avoid that we can change it to form like this 'get 'user/' + user.id.to_s'
+
+------------------------------------------------------------------------------
+
  - Added rss feed of user on his page (profile page).
     - Added 'views/users/show.rss.builder' to generate xml of rss feed.
 
@@ -13,10 +20,10 @@
     - Added users settings about this notification.
 
  - Tests:
-    - Added test to check functionality of notifications about new followers in 'spec/ruquests/users_spec.rb'
+    - Added test to check functionality of notifications about new followers in 'spec/ruquests/users_spec.rb'.
 
     - Added test for correct form of mail of notification about new followers.
-      Test added in spec/mailers/user_mailer_spec.rb
+      Test added in 'spec/mailers/user_mailer_spec.rb'.
 
  - Minor:
     - Edited view of mail about new followers to provide more information.
@@ -29,18 +36,17 @@
 
  - Added sending notification about registration to users.
 
- - Also added tests for mails
-    user_controller_spec updated
+ - Also added tests for mails:
+    - 'user_controller_spec' updated.
 
-    user_mailer_spec updated
+    - 'user_mailer_spec' updated.
 
 
 ------------------------------------------------------------------------------
 
 In this version after 'bundle update' i got weird errors with Rspec and strange error on server startup.
 
- - I fixed error on startup by adding in Gemfile
-
-    gem 'rack', '1.3.3'
+ - I fixed error on startup by adding in Gemfile:
+    - gem 'rack', '1.3.3'
 
 Also, i solved few exercises (2,3,4,5).

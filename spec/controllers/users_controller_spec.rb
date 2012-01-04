@@ -111,10 +111,14 @@ describe UsersController do
           get :show, :id => @user
           response.should have_selector("div.pagination")
           response.should have_selector("span.disabled", :content => "Previous")
-          response.should have_selector("a", :href => "/users/1?page=2",
+          response.should have_selector("a", :href => "/users/" + @user.id.to_s + "?page=2",
                                              :content => "2")
-          response.should have_selector("a", :href => "/users/1?page=2",
+          response.should have_selector("a", :href => "/users/" + @user.id.to_s + "?page=2",
                                              :content => "Next")
+#          response.should have_selector("a", :href => "/users/1?page=2",
+#                                             :content => "2")
+#          response.should have_selector("a", :href => "/users/1?page=2",
+#                                             :content => "Next")
         end
         
         it "should have right follower/following counts" do
