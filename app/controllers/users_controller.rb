@@ -1,20 +1,23 @@
 class UsersController < ApplicationController
-  before_filter :authenticate, :except => [ :show, :new, :create ]            #calls authenticate before calling params
+  before_filter :authenticate, :except => [ :show, :new, :create ]            # Calls authenticate before calling params
   before_filter :correct_user, :only   => [ :edit, :update]
   before_filter :admin_user,   :only   =>   :destroy
   
   def index
     @title = "All users"
-    @users = User.paginate( :page => params[:page] )
+
+    #if ( params[:q] != '' ) and !( params[:q].nil? )
+      #@users = User.search( params[:q] ).paginate( :page => params[:page] )   # Users that we seek.
+    #else
+      @users = User.paginate( :page => params[:page] )                        # All users.
+    #end
   end
 
   def show
     @user  = User.find( params[:id] )
     @title = @user.name                                                       #in Rails 3 it is not potential problem because of Rails 3.0 all Embedded Ruby text is escaped by default.
     @microposts = @user.microposts.paginate( :page => params[:page] )
-
     #Looks like we don't need to use this block in Rails 3.1.0
-
     #RENDER: HTML
     #        RSS
     #respond_to do |format|

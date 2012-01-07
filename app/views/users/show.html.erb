@@ -6,14 +6,15 @@
         <%= gravatar_for @user %>
         <%= @user.name %>
       </h1>
-			<%= render 'follow_form' if signed_in? %>
-			
-			<% unless @user.microposts.empty? %>
-			   <table class="microposts" summary="User microposts">
-			      <%= render @microposts %>																					<%# Using partial _microposts %>
-			   </table>
-			   <%= will_paginate @microposts %>																			<%# Using will_paginate @microposts because we inside of Users's controller BUT we want PAGINATE microposts! %>
-			<% end %>
+
+      <%= render 'follow_form' if signed_in? %>
+
+      <% unless @user.microposts.empty? %>
+         <table class="microposts" summary="User microposts">
+            <%= render @microposts %>										  <%# Using partial _microposts %>
+         </table>
+         <%= will_paginate @microposts %>									  <%# Using will_paginate @microposts because we inside of Users's controller BUT we want PAGINATE microposts! %>
+      <% end %>
 			
     </td>
     <td class="sidebar round">

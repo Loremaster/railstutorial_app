@@ -1,0 +1,6 @@
+<% search_id_attr = :q %>
+<%= form_tag( searches_path, :method => "get" ) do %>
+  <%= label_tag( search_id_attr, "Search for:" ) %>
+  <%= text_field_tag( search_id_attr )           %>
+  <%= submit_tag("Search", :name => nil )        %>
+<% end %>

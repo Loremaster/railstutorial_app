@@ -1,0 +1,7 @@
+<h1>I am Searches view!</h1>
+
+<%= will_paginate %>
+    <ul class="users">
+        <%= render @searches %>																												<%# @users are objects of User. Automatically use each for this collection. Search partial _user.html.erb and take his code %>
+    </ul>
+<%= will_paginate %>
