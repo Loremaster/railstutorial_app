@@ -1,4 +1,10 @@
-#**Version 1.0.1**
+#**Version 1.0.3a**
+
+ - Added search form. Right now it's searching onlu users.
+
+    - Edited few errors in tests which appeared because of new button.
+
+------------------------------------------------------------------------------
 
  - Switched from sqlite to PostgreSQL. Few tests has edited because few new errors appears.
 
