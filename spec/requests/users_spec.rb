@@ -2,6 +2,12 @@ require 'spec_helper'
 
 describe "Users" do
 
+  before(:each) do
+     @name_of_submit_button = "Submit"
+     @name_of_follow_button = "Follow"
+     @name_of_update_settings_button = "Update"
+  end
+
   describe "signup" do
 
     describe "failure" do
@@ -69,7 +75,7 @@ describe "Users" do
       visit signin_path
       fill_in :email,    :with => user.email
       fill_in :password, :with => user.password
-      click_button 
+      click_button
       visit root_path
             
       num_of_user_posts = user.microposts.count
@@ -77,19 +83,19 @@ describe "Users" do
                                      :content => num_of_user_posts.to_s + " microposts")
       
       fill_in :micropost_content, :with => "My 1st post!"
-      click_button
+      click_button @name_of_submit_button                                                   #If we have few buttons then we should print the name
       num_of_user_posts = user.microposts.count
       response.should have_selector("div.user_info",
                                      :content => num_of_user_posts.to_s + " micropost")
                                      
       fill_in :micropost_content, :with => "My 2nd post!"
-      click_button
+      click_button @name_of_submit_button
       num_of_user_posts = user.microposts.count
       response.should have_selector("div.user_info",
                                      :content => num_of_user_posts.to_s + " microposts")
     end  
 
-    it "should have no links to delete message on paseg of other users" do
+    it "should have no links to delete message on pages of other users" do
       first  = Factory(:user, :name => "Bob", :email => "ohno@example.com")
       second = Factory(:user, :name => "Tom", :email => "lost@example.com")
       
@@ -122,7 +128,7 @@ describe "Users" do
         click_button
 
         visit user_path( @user_two.id )
-        click_button
+        click_button @name_of_follow_button
 
         ActionMailer::Base.deliveries.last.to.should == [@user_two.email]     #Followed user(num-2) should be notificated.
       end
@@ -139,7 +145,7 @@ describe "Users" do
         fill_in :email,    :with => @user_one.email
         fill_in :password, :with => @user_one.password
         uncheck('user_notification_about_new_followers')                      #User-1 chooses about not confirming him about new followers
-        click_button
+        click_button @name_of_update_settings_button
 
         visit signout_path
 
@@ -150,7 +156,7 @@ describe "Users" do
         click_button
 
         visit user_path( @user_one.id )
-        click_button
+        click_button @name_of_follow_button
 
         response.should_not render_template('user_mailer/new_follower_notification.html.erb')  #if it doesn't render then mail will not send.
       end
@@ -181,7 +187,7 @@ describe "Users" do
 
       visit root_path
       fill_in :micropost_content, :with => "My 1st post!"
-      click_button
+      click_button @name_of_submit_button
 
       visit user_path( @user_one.id )
       click_link "Feed"

@@ -1,5 +1,5 @@
-require 'spec_helper'
+#require 'spec_helper'
 
-describe SearchesController do
+#describe SearchesController do
 
-end
+#end

@@ -3,7 +3,9 @@
   <nav class="round">
 
     <ul>
-      <li><%= render 'shared/search_form' %></li>
+      <% if signed_in? %>
+        <li><%= render 'shared/search_form' %></li>
+      <% end %>
 
       <li><%= link_to "Home", root_path %></li>
 
