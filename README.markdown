@@ -1,6 +1,6 @@
 #**Version 1.0.3a**
 
- - Added search form. Right now it's searching onlu users.
+ - Added search form. Right now it's searching only users.
 
     - Edited few errors in tests which appeared because of new button.
 
