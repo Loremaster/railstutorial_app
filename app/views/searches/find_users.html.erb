@@ -3,17 +3,27 @@
 
 <ul class="variant_of_content">
     <li>
-      <%= link_to "Posts", searches_find_microposts_path(:utf8 => @params_of_coding, :q => @key_word) %>
+      <%= link_to "Posts", searches_find_microposts_path( :utf8 => @params_of_coding,
+                                                          :q => @key_word ) %>
     </li>
 
     <li class="current_variant_of_searching">
-      <%= link_to "Users", searches_find_users_path(:utf8 => @params_of_coding, :q => @key_word) %>
+      <%= link_to "Users", searches_find_users_path( :utf8 => @params_of_coding,
+                                                     :q => @key_word ) %>
     </li>
 </ul>
 
 
-<%= will_paginate %>
-    <ul class="users">
-        <%= render @searches %>
-    </ul>
-<%= will_paginate %>
+<% if @searches.empty?  %>                                                    <%# show users if we find them %>
+
+    <%= render 'no_results_found' %>
+
+<% else %>
+
+    <%= will_paginate %>
+        <ul class="users">
+            <%= render @searches %>
+        </ul>
+    <%= will_paginate %>
+
+<% end %>

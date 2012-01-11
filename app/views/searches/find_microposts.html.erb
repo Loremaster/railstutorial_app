@@ -2,19 +2,28 @@
 
 <ul class="variant_of_content">
     <li class="current_variant_of_searching">
-      <%= link_to "Posts", searches_find_microposts_path(:utf8 => @params_of_coding, :q => @key_word) %>
+      <%= link_to "Posts", searches_find_microposts_path( :utf8 => @params_of_coding,
+                                                          :q => @key_word) %>
     </li>
 
     <li>
-      <%= link_to "Users", searches_find_users_path(:utf8 => @params_of_coding, :q => @key_word) %>
+      <%= link_to "Users", searches_find_users_path( :utf8 => @params_of_coding,
+                                                     :q => @key_word) %>
     </li>
 </ul>
 
 
-<% unless @searches.empty? %>
-    <table class="microposts" summary="User microposts">
-        <%= render :partial => 'shared/feed_item', :collection => @searches %>
-    </table>
-    <%= will_paginate @searches %>
-<% end %>
+<% if @searches.empty?  %>                                                    <%#= show posts if we find them %>
 
+    <%= render 'no_results_found' %>
+
+<% else %>
+
+    <% unless @searches.empty? %>
+        <table class="microposts" summary="User microposts">
+            <%= render :partial => 'shared/feed_item', :collection => @searches %>
+        </table>
+        <%= will_paginate @searches %>
+    <% end %>
+
+<% end %>
