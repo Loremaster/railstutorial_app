@@ -6,12 +6,11 @@ SampleApp::Application.routes.draw do
   resources :microposts,    :only => [:create, :destroy]                      #Gives POST and DELETE.
   resources :relationships, :only => [:create, :destroy]
 
+  #Controller have only 2 methods. Here i give their path in browser.
   match '/searches/find_users',      :controller => 'searches',
                                      :action     => 'find_users'
   match '/searches/find_microposts', :controller => 'searches',
                                      :action     => 'find_microposts'
-  resources :searches,      :only => []
-
 
   match '/contact', :to => 'pages#contact'                                    #Says that site.com/contact will give answer of pages#contact controller. Also that gives us map such as path_contact.
   match '/about',   :to => 'pages#about'
