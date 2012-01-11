@@ -1,6 +1,6 @@
-#**Version 1.0.3a**
+#**Version 1.0.4a**
 
- - Added search form. Right now it's searching only users.
+ - Added search form. It is searching microposts by default. You can search users if click link in searching results.
 
     - Edited few errors in tests which appeared because of new button.
 
@@ -55,4 +55,4 @@ In this version after 'bundle update' i got weird errors with Rspec and strange 
  - I fixed error on startup by adding in Gemfile:
     - gem 'rack', '1.3.3'
 
-Also, i solved few exercises (2,3,4,5).
+ - Few exercises solved (2,3,4,5).

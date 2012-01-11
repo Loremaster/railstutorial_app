@@ -20,7 +20,6 @@ SampleApp::Application.routes.draw do
   match '/signin',  :to => 'sessions#new'
   match '/signout', :to => 'sessions#destroy'
 
-  #match '/searching_users', :to => 'searches#find_users'
 
   resources :users do
       resources :microposts

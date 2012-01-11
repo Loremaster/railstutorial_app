@@ -1,7 +1,7 @@
 <%= render 'result_info'%>
 
-<div>
-  <ul class="variant_of_content">
+
+<ul class="variant_of_content">
     <li>
       <%= link_to "Posts", searches_find_microposts_path(:utf8 => @params_of_coding, :q => @key_word) %>
     </li>
@@ -9,8 +9,8 @@
     <li class="current_variant_of_searching">
       <%= link_to "Users", searches_find_users_path(:utf8 => @params_of_coding, :q => @key_word) %>
     </li>
-  </ul>
-</div>
+</ul>
+
 
 <%= will_paginate %>
     <ul class="users">
