@@ -1,4 +1,4 @@
-#**Version 1.0.4a**
+#**Version 1.0.4beta**
 
  - Added search form. It is searching microposts by default. You can search users if click link in searching results.
 
