@@ -4,6 +4,8 @@
 
     - Edited few errors in tests which appeared because of new button.
 
+ - Added search help.
+
 ------------------------------------------------------------------------------
 
  - Switched from sqlite to PostgreSQL. Few tests has edited because few new errors appears.
