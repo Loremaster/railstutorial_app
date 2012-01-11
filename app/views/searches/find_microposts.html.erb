@@ -1,0 +1,20 @@
+<h2>
+  Result: <strong>
+             <%= @key_word %>
+          </strong>
+</h2>
+
+<div>
+  <ul class="variant_of_content">
+    <li> <%= link_to "Posts", searches_find_microposts_path(:utf8 => @params_of_coding, :q => @key_word) %> </li>
+    <li> <%= link_to "Users", searches_find_users_path(:utf8 => @params_of_coding, :q => @key_word) %> </li>
+  </ul>
+</div>
+
+
+<% unless @searches.empty? %>
+  <table class="microposts" summary="User microposts">
+    <%= render :partial => 'shared/feed_item', :collection => @searches %>
+  </table>
+  <%= will_paginate @searches %>
+<% end %>
