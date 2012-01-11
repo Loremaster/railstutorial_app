@@ -261,3 +261,7 @@ ul.variant_of_content li {
     list-style-type: none;
     padding: 4px;
 }
+
+ul.variant_of_content li.current_variant_of_searching {
+    background-color: #dcdcdc;                                                /*gainsboro*/
+}
