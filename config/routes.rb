@@ -5,7 +5,13 @@ SampleApp::Application.routes.draw do
   resources :sessions,      :only => [:new, :create, :destroy]
   resources :microposts,    :only => [:create, :destroy]                      #Gives POST and DELETE.
   resources :relationships, :only => [:create, :destroy]
-  resources :searches,      :only => [:index]
+
+  match '/searches/find_users',      :controller => 'searches',
+                                     :action     => 'find_users'
+  match '/searches/find_microposts', :controller => 'searches',
+                                     :action     => 'find_microposts'
+  resources :searches,      :only => []
+
 
   match '/contact', :to => 'pages#contact'                                    #Says that site.com/contact will give answer of pages#contact controller. Also that gives us map such as path_contact.
   match '/about',   :to => 'pages#about'
@@ -14,6 +20,8 @@ SampleApp::Application.routes.draw do
   match '/signup',  :to => 'users#new'
   match '/signin',  :to => 'sessions#new'
   match '/signout', :to => 'sessions#destroy'
+
+  #match '/searching_users', :to => 'searches#find_users'
 
   resources :users do
       resources :microposts

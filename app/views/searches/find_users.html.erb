@@ -4,6 +4,13 @@
           </strong>
 </h2>
 
+<div>
+  <ul class="variant_of_content">
+    <li> <%= link_to "Posts", searches_find_microposts_path(:utf8 => @params_of_coding, :q => @key_word) %> </li>
+    <li> <%= link_to "Users", searches_find_users_path(:utf8 => @params_of_coding, :q => @key_word) %> </li>
+  </ul>
+</div>
+
 <%= will_paginate %>
     <ul class="users">
         <%= render @searches %>																												<%# @users are objects of User. Automatically use each for this collection. Search partial _user.html.erb and take his code %>

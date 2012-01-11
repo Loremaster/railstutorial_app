@@ -253,3 +253,11 @@ form.new_micropost textarea {
   height: 4em;
   margin-bottom: 0;
 }
+
+/*Page of search results*/
+
+ul.variant_of_content li {
+    display: inline-block;
+    list-style-type: none;
+    padding: 4px;
+}
