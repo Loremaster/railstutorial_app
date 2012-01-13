@@ -13,7 +13,7 @@
 </ul>
 
 
-<% if @searches.empty?  %>                                                    <%#= show posts if we find them %>
+<% if @searches.empty? or @searches.nil?  %>                                                    <%#= show posts if we find them %>
 
     <%= render 'no_results_found' %>
 

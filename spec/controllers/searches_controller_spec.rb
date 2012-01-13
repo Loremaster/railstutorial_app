@@ -1,4 +1,4 @@
-#"NOTICE:  text-search query doesn't contain lexemes: "" " fixed.
+#Fixed "NOTICE:  text-search query doesn't contain lexemes: "" ".
 
 require 'spec_helper'
 
@@ -27,9 +27,11 @@ describe SearchesController do
 
     describe "when signed in" do
       before(:each) do
-        @user = test_sign_in( Factory(:user) )
-        #controller.stub!(:params).and_return({"q" =>"Minus"})
-        get :find_microposts, :q => "Data"                                    #Sending data (by :q => "Text"), because postgre doesn't like empty strings and show warning.
+        @user = test_sign_in( Factory( :user ) )
+        @micropost = Factory( :micropost,
+                              :user => @user,
+                              :content => "Test message of user")
+        get :find_microposts, :q => @micropost.content                                    #Sending data (by :q => "Text"), because postgre doesn't like empty strings and show warning.
       end
 
       it "should be successful" do
@@ -39,6 +41,11 @@ describe SearchesController do
       it "should have right title" do
         response.should have_selector( "title",
                                        :content => "#{@base_title} | Searching microposts")
+      end
+
+      it "should find micropost of user" do
+        response.should have_selector( "table.microposts",
+                                       :content => @micropost.content)
       end
     end
   end
@@ -61,8 +68,10 @@ describe SearchesController do
 
     describe "when signed in" do
       before(:each) do
-        @user = test_sign_in( Factory(:user) )
-        get :find_users, :q => "Another data"                                 #Sending data (by :q => "Text"), because postgre doesn't like empty strings and show warning.
+        @user = test_sign_in( Factory( :user,
+                                       :name => "Bob",
+                                       :email => "bob@users.com") )
+        get :find_users, :q => "Bob"                                          #Sending data (by :q => "Text"), because postgre doesn't like empty strings and show warning.
       end
 
       it "should be successful" do
@@ -72,6 +81,11 @@ describe SearchesController do
       it "should have right title" do
         response.should have_selector( "title",
                                        :content => "#{@base_title} | Searching users")
+      end
+
+      it "should find current user" do
+        response.should have_selector( "ul.users",
+                                       :content => @user.name )
       end
     end
   end
