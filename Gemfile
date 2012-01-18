@@ -3,9 +3,12 @@ source 'http://rubygems.org'
 gem 'rails', '3.1.3'                                                          #'3.1.0'
 gem 'gravatar_image_tag'
 gem 'will_paginate'
-gem 'rack'
-gem 'rake'                                                                              #'1.3.3'
+gem 'rack'                                                                    #'1.3.3'
+gem 'rake'                                                                    #Fix error with "couldn't find rake"
 gem 'texticle', "2.0", :require => 'texticle/rails'
+
+gem 'execjs'
+gem 'therubyracer'
 
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
