@@ -8,7 +8,7 @@ gem 'rake'                                                                    #F
 gem 'texticle', "2.0", :require => 'texticle/rails'
 
 gem 'execjs'
-gem 'therubyracer'
+gem 'therubyracer', require: "v8"
 
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
