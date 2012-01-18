@@ -6,6 +6,8 @@ set :user, "root"                                                             #I
 
 
 set :scm, :git
+set :branch, "master"
+
 # Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
 
 #role :web, "your host"                          # Your HTTP server, Apache/etc
