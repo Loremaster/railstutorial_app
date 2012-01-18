@@ -46,5 +46,5 @@ production:
     database: production_development
     username: postgres
     password: def!ne_p0stgre
-    host: 188.127.224.136
+    host: localhost
     encoding: UTF8
