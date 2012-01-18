@@ -3,7 +3,8 @@ source 'http://rubygems.org'
 gem 'rails', '3.1.3'                                                          #'3.1.0'
 gem 'gravatar_image_tag'
 gem 'will_paginate'
-gem 'rack'                                                                    #'1.3.3'
+gem 'rack'
+gem 'rake'                                                                              #'1.3.3'
 gem 'texticle', "2.0", :require => 'texticle/rails'
 
 # Bundle edge Rails instead:
