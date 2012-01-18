@@ -1,9 +1,12 @@
+$:.unshift(File.expand_path('./lib', ENV['rvm_path']))
+require 'rvm/capistrano'
+require 'bundler/capistrano'
+
 set :application, "ror_tutorial"
 set :repository,  "git@github.com:Loremaster/sample_app.git"
 set :deploy_to, "/vol/www/apps/#{application}"
 
 set :user, "root"                                                             #If you log into your server with a different user name than you are logged into your local machine with, you’ll need to tell Capistrano about that user name.
-
 
 set :scm, :git
 set :branch, "master"
@@ -15,7 +18,9 @@ set :branch, "master"
 #role :db,  "your host", :primary => true        # This is where Rails migrations will run
 #role :db,  "your slave db-server here"
 
-server "188.127.224.136", :app, :web, :db, :primary => true
+server "188.127.224.136", :app,
+                          :web,
+                          :db, :primary => true
 
 
 namespace :passenger do
