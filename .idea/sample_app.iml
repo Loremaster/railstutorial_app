@@ -18,31 +18,31 @@
     </requirement>
     <requirement>
       <requirement>
-        <dependency name="autotest" version="4.4.6" bound="EQUAL" git="false" path="false" doRequire="true" />
+        <dependency name="autotest" version="0" bound="GREATER_OR_EQUAL" git="false" path="false" doRequire="true" />
       </requirement>
       <source from="Gemfile" />
     </requirement>
     <requirement>
       <requirement>
-        <dependency name="autotest-fsevent" version="0.2.4" bound="EQUAL" git="false" path="false" doRequire="true" />
+        <dependency name="autotest-fsevent" version="0" bound="GREATER_OR_EQUAL" git="false" path="false" doRequire="true" />
       </requirement>
       <source from="Gemfile" />
     </requirement>
     <requirement>
       <requirement>
-        <dependency name="autotest-growl" version="0.2.9" bound="EQUAL" git="false" path="false" doRequire="true" />
+        <dependency name="autotest-growl" version="0" bound="GREATER_OR_EQUAL" git="false" path="false" doRequire="true" />
       </requirement>
       <source from="Gemfile" />
     </requirement>
     <requirement>
       <requirement>
-        <dependency name="autotest-rails-pure" version="4.1.2" bound="EQUAL" git="false" path="false" doRequire="true" />
+        <dependency name="autotest-rails-pure" version="0" bound="GREATER_OR_EQUAL" git="false" path="false" doRequire="true" />
       </requirement>
       <source from="Gemfile" />
     </requirement>
     <requirement>
       <requirement>
-        <dependency name="coffee-rails" version="3.1.0" bound="LATEST_IN_BRANCH" git="false" path="false" doRequire="true" />
+        <dependency name="coffee-rails" version="0" bound="GREATER_OR_EQUAL" git="false" path="false" doRequire="true" />
       </requirement>
       <source from="Gemfile" />
     </requirement>
@@ -78,25 +78,25 @@
     </requirement>
     <requirement>
       <requirement>
-        <dependency name="rack" version="1.3.3" bound="EQUAL" git="false" path="false" doRequire="true" />
+        <dependency name="rack" version="0" bound="GREATER_OR_EQUAL" git="false" path="false" doRequire="true" />
       </requirement>
       <source from="Gemfile" />
     </requirement>
     <requirement>
       <requirement>
-        <dependency name="rails" version="3.1.0" bound="EQUAL" git="false" path="false" doRequire="true" />
+        <dependency name="rails" version="3.1.3" bound="EQUAL" git="false" path="false" doRequire="true" />
       </requirement>
       <source from="Gemfile" />
     </requirement>
     <requirement>
       <requirement>
-        <dependency name="rspec-rails" version="2.6.1" bound="EQUAL" git="false" path="false" doRequire="true" />
+        <dependency name="rspec-rails" version="0" bound="GREATER_OR_EQUAL" git="false" path="false" doRequire="true" />
       </requirement>
       <source from="Gemfile" />
     </requirement>
     <requirement>
       <requirement>
-        <dependency name="sass-rails" version="3.1.0" bound="LATEST_IN_BRANCH" git="false" path="false" doRequire="true" />
+        <dependency name="sass-rails" version="0" bound="GREATER_OR_EQUAL" git="false" path="false" doRequire="true" />
       </requirement>
       <source from="Gemfile" />
     </requirement>
@@ -126,7 +126,7 @@
     </requirement>
     <requirement>
       <requirement>
-        <dependency name="webrat" version="0.7.1" bound="EQUAL" git="false" path="false" doRequire="true" />
+        <dependency name="webrat" version="0" bound="GREATER_OR_EQUAL" git="false" path="false" doRequire="true" />
       </requirement>
       <source from="Gemfile" />
     </requirement>
@@ -145,20 +145,20 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" scope="PROVIDED" name="[gem] bundler (v1.0.18, /Users/serg/.rvm/gems/ruby-1.9.2-p290@rails3tutorial/gems/bundler-1.0.18)" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="[gem] rspec-rails (v2.6.1, /Users/serg/.rvm/gems/ruby-1.9.2-p290@rails3tutorial/gems/rspec-rails-2.6.1)" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="[gem] autotest-rails-pure (v4.1.2, /Users/serg/.rvm/gems/ruby-1.9.2-p290@rails3tutorial/gems/autotest-rails-pure-4.1.2)" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="[gem] rails (v3.1.0, /Users/serg/.rvm/gems/ruby-1.9.2-p290@rails3tutorial/gems/rails-3.1.0)" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="[gem] pg (v0.11.0, /Users/serg/.rvm/gems/ruby-1.9.2-p290@rails3tutorial/gems/pg-0.11.0)" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="[gem] coffee-rails (v3.1.0, /Users/serg/.rvm/gems/ruby-1.9.2-p290@rails3tutorial/gems/coffee-rails-3.1.0)" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="[gem] jquery-rails (v1.0.14, /Users/serg/.rvm/gems/ruby-1.9.2-p290@rails3tutorial/gems/jquery-rails-1.0.14)" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="[gem] sass-rails (v3.1.0, /Users/serg/.rvm/gems/ruby-1.9.2-p290@rails3tutorial/gems/sass-rails-3.1.0)" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="[gem] webrat (v0.7.1, /Users/serg/.rvm/gems/ruby-1.9.2-p290@rails3tutorial/gems/webrat-0.7.1)" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="[gem] uglifier (v1.0.3, /Users/serg/.rvm/gems/ruby-1.9.2-p290@rails3tutorial/gems/uglifier-1.0.3)" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="[gem] autotest (v4.4.6, /Users/serg/.rvm/gems/ruby-1.9.2-p290@rails3tutorial/gems/autotest-4.4.6)" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="[gem] spork (v0.8.5, /Users/serg/.rvm/gems/ruby-1.9.2-p290@rails3tutorial/gems/spork-0.8.5)" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="[gem] therubyracer-heroku (v0.8.1.pre3, /Users/serg/.rvm/gems/ruby-1.9.2-p290@rails3tutorial/gems/therubyracer-heroku-0.8.1.pre3)" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="[gem] autotest-growl (v0.2.9, /Users/serg/.rvm/gems/ruby-1.9.2-p290@rails3tutorial/gems/autotest-growl-0.2.9)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] rspec-rails (v2.6.1, /Users/serg/.rvm/gems/ruby-1.9.3-head@global/gems/rspec-rails-2.6.1)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] autotest-rails-pure (v4.1.2, /Users/serg/.rvm/gems/ruby-1.9.3-head@global/gems/autotest-rails-pure-4.1.2)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] pg (v0.11.0, /Users/serg/.rvm/gems/ruby-1.9.3-head@global/gems/pg-0.11.0)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] coffee-rails (v3.1.0, /Users/serg/.rvm/gems/ruby-1.9.3-head@global/gems/coffee-rails-3.1.0)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] jquery-rails (v1.0.14, /Users/serg/.rvm/gems/ruby-1.9.3-head@global/gems/jquery-rails-1.0.14)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] sass-rails (v3.1.0, /Users/serg/.rvm/gems/ruby-1.9.3-head@global/gems/sass-rails-3.1.0)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] webrat (v0.7.1, /Users/serg/.rvm/gems/ruby-1.9.3-head@global/gems/webrat-0.7.1)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] uglifier (v1.0.3, /Users/serg/.rvm/gems/ruby-1.9.3-head@global/gems/uglifier-1.0.3)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] autotest (v4.4.6, /Users/serg/.rvm/gems/ruby-1.9.3-head@global/gems/autotest-4.4.6)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] spork (v0.8.5, /Users/serg/.rvm/gems/ruby-1.9.3-head@global/gems/spork-0.8.5)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] therubyracer-heroku (v0.8.1.pre3, /Users/serg/.rvm/gems/ruby-1.9.3-head@global/gems/therubyracer-heroku-0.8.1.pre3)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] autotest-growl (v0.2.9, /Users/serg/.rvm/gems/ruby-1.9.3-head@global/gems/autotest-growl-0.2.9)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] rack (v1.3.6, /Users/serg/.rvm/gems/ruby-1.9.3-head@global/gems/rack-1.3.6)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] bundler (v1.0.21, /Users/serg/.rvm/gems/ruby-1.9.3-head@global/gems/bundler-1.0.21)" level="application" />
   </component>
 </module>
 
