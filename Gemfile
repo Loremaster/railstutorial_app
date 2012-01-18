@@ -7,8 +7,8 @@ gem 'rack'                                                                    #'
 gem 'rake'                                                                    #Fix error with "couldn't find rake"
 gem 'texticle', "2.0", :require => 'texticle/rails'
 
-gem 'execjs'
-gem 'therubyracer', require: "v8"
+#gem 'execjs'
+#gem 'therubyracer', require: "v8"
 
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
