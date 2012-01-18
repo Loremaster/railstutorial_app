@@ -20,6 +20,7 @@ end
 gem 'jquery-rails'
 
 group :development do
+  gem 'capistrano'
   gem 'rspec-rails'                                                           #, '2.6.1'
   gem 'therubyracer-heroku'
   gem 'pg'                                                                    #'sqlite3' - prev   
@@ -40,7 +41,7 @@ group :test do
 end
 
 group :production do  
-  gem 'pg'                                                                    #this gem uses with heroku
+  gem 'pg'                                                                    #postgre gem (uses with heroku)
 end
 
 # Use unicorn as the web server
