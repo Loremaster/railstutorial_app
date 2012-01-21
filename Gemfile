@@ -46,6 +46,7 @@ end
 
 group :production do  
   gem 'pg'                                                                    #postgre gem (uses with heroku)
+  gem 'faker'
 end
 
 # Use unicorn as the web server

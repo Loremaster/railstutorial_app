@@ -13,10 +13,6 @@ set :deploy_to, "/vol/www/apps/#{application}"
 set :scm, :git
 set :branch, "master"
 
-
-
-# Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
-
 #role :web, "your host"                          # Your HTTP server, Apache/etc
 #role :app, "your host"                          # This may be the same as your `Web` server
 #role :db,  "your host", :primary => true        # This is where Rails migrations will run
