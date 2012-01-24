@@ -1,6 +1,8 @@
-#**Version 1.1.0beta**
+#**Version 1.1.1b**
 
  - Added capistrano gem and launched application on the vds.
+
+ - Switched from Texticle to Sphinx & Thinking Sphinx.
 
 ------------------------------------------------------------------------------
 
