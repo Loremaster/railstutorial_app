@@ -265,3 +265,8 @@ ul.variant_of_content li {
 ul.variant_of_content li.current_variant_of_searching {
     background-color: #dcdcdc;
 }
+
+/*Main page for unauthorized users*/
+p.text_of_main_page_for_unauthorized {
+    text-align: center;
+}
