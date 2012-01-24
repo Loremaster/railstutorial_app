@@ -1,4 +1,8 @@
-#**Version 1.0.5beta**
+#**Version 1.1.0beta**
+
+ - Added capistrano gem and launched application on the vds.
+
+------------------------------------------------------------------------------
 
  - Added search form. It is searching microposts by default. You can search users if click link in searching results.
 
