@@ -1,4 +1,4 @@
-#require 'bundler/capistrano'
+require 'bundler/capistrano'
 
 set :user, "root"                                                             #If you log into your server with a different user name than you are logged into your local machine with, you’ll need to tell Capistrano about that user name.
 
