@@ -12,7 +12,7 @@ set :deploy_to, "/vol/www/apps/#{application}"
 
 set :scm, :git
 set :branch, "master"
-
+set :deploy_via, :remote_cache                                                # Указание на то, что стоит хранить кеш репозитария локально и с каждым деплоем лишь подтягивать произведенные изменения. Очень актуально для больших и тяжелых репозитариев.
 #role :web, "your host"                          # Your HTTP server, Apache/etc
 #role :app, "your host"                          # This may be the same as your `Web` server
 #role :db,  "your host", :primary => true        # This is where Rails migrations will run
