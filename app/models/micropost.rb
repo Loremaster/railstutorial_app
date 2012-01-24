@@ -20,7 +20,12 @@ class Micropost < ActiveRecord::Base
   
   validates :content, :presence => true, :length => { :maximum => 140 }       # Content of message should be and max 140 symbols.
   validates :user_id, :presence => true                                       # User id should be being.
-  
+
+  define_index do
+    indexes content
+  end
+
+
   private
 
       # Return an SQL condition for users followed by the given user.

@@ -5,7 +5,7 @@ gem 'gravatar_image_tag'
 gem 'will_paginate'
 gem 'rack'                                                                    #'1.3.3'
 gem 'rake'                                                                    #Fix error with "couldn't find rake"
-gem 'texticle', "2.0", :require => 'texticle/rails'
+#gem 'texticle', "2.0", :require => 'texticle/rails'
 gem 'thinking-sphinx'
 
 #gem 'execjs'

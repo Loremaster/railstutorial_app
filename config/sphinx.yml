@@ -1,0 +1,11 @@
+development:
+  bin_path: "/usr/local/bin"
+  searchd_binary_name: searchd
+  indexer_binary_name: indexer
+
+test:
+  bin_path: "/usr/local/bin"
+  searchd_binary_name: searchd
+  indexer_binary_name: indexer
+
+#production:

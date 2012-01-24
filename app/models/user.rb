@@ -52,7 +52,10 @@ class User < ActiveRecord::Base
   before_save :encrypt_password                                               #This stuff calls "callback". We register variable by sending him to "before_save" 
                                                                               #Then we create method with such name.
                                                                               #Active Record will call this method before saving record (in db)
-                                                                              
+  define_index do
+    indexes :name
+  end
+
   def feed
     #Micropost.where( "user_id = ?", id )                                      # "?" in "user_id = ?" escaping before ncluding in SQL querry.
     Micropost.from_users_followed_by(self)
