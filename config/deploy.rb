@@ -60,10 +60,12 @@ end
 desc "Prepare system"
   task :prepare_system, :roles => :app do
     run "cd #{current_path} && bundle install --without development test && bundle install --deployment"
-    run "chmod 777 -R #{current_path}/tmp/" 
   end
   
-#desc "Fix permission"
+desc "Fix permission"
+  task :fix_permissions, :roles => :app do
+    run "sudo chmod 777 -R #{current_path}/tmp/" 
+  end
     
   after "deploy:update_code", :prepare_system
-  # after "deploy:update_code", :start_sphinx
+  after "deploy:update_code", :fix_permissions
