@@ -40,10 +40,13 @@ namespace :deploy do
    end
 end
 
-run("cd #{current_path} && bundle install --without development test && bundle install --deployment && chmod 777 -R #{current_path}/tmp/ && rake thinking_sphinx:configure && rake thinking_sphinx:start")
+#run("cd #{current_path} && bundle install --without development test && bundle install --deployment && chmod 777 -R #{current_path}/tmp/ && rake thinking_sphinx:configure && rake thinking_sphinx:start")
 
-# desc "Start sphinx" 
-#   task :start_sphinx, :roles => :app do
-#     #run "cd #{current_path} && rake thinking_sphinx:configure && rake thinking_sphinx:start"  
-#     #run "cd #{current_path} && bundle install --without development test && bundle install --deployment && chmod 777 -R #{current_path}/tmp/ && rake thinking_sphinx:configure && rake thinking_sphinx:start"
-#   end
+desc "Start sphinx" 
+  task :start_sphinx, :roles => :app do
+    #run "cd #{current_path} && rake thinking_sphinx:configure && rake thinking_sphinx:start"  
+    run "cd #{current_path} && bundle install --without development test && bundle install --deployment && chmod 777 -R #{current_path}/tmp/ && rake thinking_sphinx:configure && rake thinking_sphinx:start"
+  end
+  
+  after "deploy:update_code", "start_sphinx"
+  
