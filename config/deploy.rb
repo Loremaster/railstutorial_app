@@ -3,14 +3,10 @@ $:.unshift(File.expand_path('./lib', ENV['rvm_path']))
 
 #Load RVM's capistrano plugin.    
 require "rvm/capistrano"
-
-set :rvm_ruby_string, '1.9.3-head'
-set :rvm_type, :root                                                          # Don't use system-wide RVM, use my user, which is root.
-
 require 'bundler/capistrano'
 
-#Try this one
-#set :rvm_type, :system
+set :rvm_ruby_string, '1.9.3-head'                                            #This is current version of ruby which is uses by RVM. To get version print: $ rvm list 
+set :rvm_type, :root                                                          #Don't use system-wide RVM, use my user, which name is root.
 
 set :user, "root"                                                             #If you log into your server with a different user name than you are logged into your local machine with, you’ll need to tell Capistrano about that user name.
 set :rails_env, "production"
@@ -60,15 +56,14 @@ task :after_update_code, :roles => [:app] do
   run "cd #{current_path} rake thinking_sphinx:configure && rake thinking_sphinx:start"
 end
 
+#chmod doesn't work, why?
 desc "Prepare system"
   task :prepare_system, :roles => :app do
-    run "cd #{current_path} && bundle install --without development test && bundle install --deployment && chmod 777 -R #{current_path}/tmp/" 
+    run "cd #{current_path} && bundle install --without development test && bundle install --deployment"
+    run "chmod 777 -R #{current_path}/tmp/" 
   end
   
-# desc "Start sphinx" 
-#   task :start_sphinx, :roles => :app do 
-#     run "cd #{current_path} rake thinking_sphinx:configure && rake thinking_sphinx:start"
-#   end
-  
+#desc "Fix permission"
+    
   after "deploy:update_code", :prepare_system
   # after "deploy:update_code", :start_sphinx
