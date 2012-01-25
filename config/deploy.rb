@@ -52,15 +52,23 @@ namespace :deploy do
    end
 end
 
+task :before_update_code, :roles => [:app] do
+  run "cd #{current_path} rake thinking_sphinx:stop"
+end
+
+task :after_update_code, :roles => [:app] do
+  run "cd #{current_path} rake thinking_sphinx:configure && rake thinking_sphinx:start"
+end
+
 desc "Prepare system"
   task :prepare_system, :roles => :app do
     run "cd #{current_path} && bundle install --without development test && bundle install --deployment && chmod 777 -R #{current_path}/tmp/" 
   end
   
-desc "Start sphinx" 
-  task :start_sphinx, :roles => :app do 
-    run "cd #{current_path} rake thinking_sphinx:configure && rake thinking_sphinx:rebuild"
-  end
+# desc "Start sphinx" 
+#   task :start_sphinx, :roles => :app do 
+#     run "cd #{current_path} rake thinking_sphinx:configure && rake thinking_sphinx:start"
+#   end
   
   after "deploy:update_code", :prepare_system
-  after "deploy:update_code", :start_sphinx
+  # after "deploy:update_code", :start_sphinx
