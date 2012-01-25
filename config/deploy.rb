@@ -1,4 +1,4 @@
-require 'bundler/capistrano'
+#require 'bundler/capistrano'
 
 set :user, "root"                                                             #If you log into your server with a different user name than you are logged into your local machine with, you’ll need to tell Capistrano about that user name.
 set :rails_env, "production"
@@ -38,4 +38,8 @@ namespace :deploy do
    task :restart, :roles => :app, :except => { :no_release => true } do
      run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
    end
+end
+
+task :after_deploy, :roles => :app do
+    run "#{current_path}/rake thinking_sphinx:start"
 end
