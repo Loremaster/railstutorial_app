@@ -5,12 +5,12 @@ $:.unshift(File.expand_path('./lib', ENV['rvm_path']))
 require "rvm/capistrano"
 
 set :rvm_ruby_string, '1.9.3'
-set :rvm_type, :user  # Don't use system-wide RVM
+set :rvm_type, :root  # Don't use system-wide RVM
 
 require 'bundler/capistrano'
 
 #Try this one
-set :rvm_type, :system
+#set :rvm_type, :system
 
 set :user, "root"                                                             #If you log into your server with a different user name than you are logged into your local machine with, you’ll need to tell Capistrano about that user name.
 set :rails_env, "production"
