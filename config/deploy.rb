@@ -38,13 +38,9 @@ namespace :deploy do
    task :restart, :roles => :app, :except => { :no_release => true } do
      run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
    end
-   task :prepare_app, :roles => :app do
-      run "cd #{current_path} && bundle install --without development test && bundle install --deployment && chmod 777 -R #{current_path}/tmp/"
-   end
 end
 
-#desc "Configurue bundler and right for tmp folder" 
-  #task :start_sphinx, :roles => :app do
-  #  run "cd #{current_path} && bundle install --without development test && bundle install --deployment && chmod 777 -R #{current_path}/tmp/"
-  #  run “cd #{current_path} && rake thinking_sphinx:configure && rake thinking_sphinx:start”
-  #end
+desc "Start sphinx" 
+  task :start_sphinx, :roles => :app do
+    run "cd #{current_path} && bundle install --without development test && bundle install --deployment && chmod 777 -R #{current_path}/tmp/ && rake thinking_sphinx:configure && rake thinking_sphinx:start"
+  end
