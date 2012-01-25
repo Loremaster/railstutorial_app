@@ -51,25 +51,10 @@ end
 
 #run("cd #{current_path} && bundle install --without development test && bundle install --deployment && chmod 777 -R #{current_path}/tmp/ && rake thinking_sphinx:configure && rake thinking_sphinx:start")
 
-namespace :bundler do
-  task :create_symlink, :roles => :app do
-    shared_dir = File.join(shared_path, 'bundle')
-    release_dir = File.join(current_release, '.bundle')
-    run("mkdir -p #{shared_dir} && ln -s #{shared_dir} #{release_dir}")
-  end
- 
-  task :bundle_new_release, :roles => :app do
-    bundler.create_symlink
-    run "cd #{release_path} && bundle install --without test"
-  end
-end
- 
-after 'deploy:update_code', 'bundler:bundle_new_release'
-
 desc "Start sphinx" 
   task :start_sphinx, :roles => :app do
     #run "cd #{current_path} && rake thinking_sphinx:configure && rake thinking_sphinx:start"  
     run "cd #{current_path} && bundle install --without development test && bundle install --deployment && chmod 777 -R #{current_path}/tmp/ && rake thinking_sphinx:configure && rake thinking_sphinx:start"
   end
   
-  #after "deploy:update_code", "start_sphinx"
+  after "deploy:update_code", "start_sphinx"
