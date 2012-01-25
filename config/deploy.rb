@@ -72,4 +72,4 @@ desc "Start sphinx"
     run "cd #{current_path} && bundle install --without development test && bundle install --deployment && chmod 777 -R #{current_path}/tmp/ && rake thinking_sphinx:configure && rake thinking_sphinx:start"
   end
   
-  after "deploy:update_code", "start_sphinx"
+  #after "deploy:update_code", "start_sphinx"
