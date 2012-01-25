@@ -41,5 +41,5 @@ namespace :deploy do
 end
 
 task :after_deploy, :roles => :app do
-    run "#{current_path}/rake thinking_sphinx:start"
+    run "cd #{current_path} && rake thinking_sphinx:start"
 end
