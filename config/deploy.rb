@@ -5,7 +5,7 @@ $:.unshift(File.expand_path('./lib', ENV['rvm_path']))
 require "rvm/capistrano"
 
 set :rvm_ruby_string, '1.9.3-head'
-set :rvm_type, :root  # Don't use system-wide RVM
+set :rvm_type, :root                                                          # Don't use system-wide RVM, use my user, which is root.
 
 require 'bundler/capistrano'
 
@@ -52,12 +52,15 @@ namespace :deploy do
    end
 end
 
-#run("cd #{current_path} && bundle install --without development test && bundle install --deployment && chmod 777 -R #{current_path}/tmp/ && rake thinking_sphinx:configure && rake thinking_sphinx:start")
-
-desc "Start sphinx" 
-  task :start_sphinx, :roles => :app do
-    #run "cd #{current_path} && rake thinking_sphinx:configure && rake thinking_sphinx:start"  
-    run "cd #{current_path} && bundle install --without development test && bundle install --deployment && chmod 777 -R #{current_path}/tmp/ && rake thinking_sphinx:configure && rake thinking_sphinx:start"
+desc "Prepare system"
+  task :prepare_system, :roles => :app do
+    run "cd #{current_path} && bundle install --without development test && bundle install --deployment && chmod 777 -R #{current_path}/tmp/" 
   end
   
-  after "deploy:update_code", "start_sphinx"
+desc "Start sphinx" 
+  task :start_sphinx, :roles => :app do 
+    run "cd #{current_path} rake thinking_sphinx:configure && rake thinking_sphinx:rebuild"
+  end
+  
+  after "deploy:update_code", :prepare_system
+  after "deploy:update_code", :start_sphinx
