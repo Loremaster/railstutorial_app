@@ -57,13 +57,4 @@ desc "Start sphinx"
     run "cd #{current_path} && bundle install --without development test && bundle install --deployment && chmod 777 -R #{current_path}/tmp/ && rake thinking_sphinx:configure && rake thinking_sphinx:start"
   end
   
-  #after "deploy:update_code", "start_sphinx"
-  
-  namespace :rvm do
-    task :trust_rvmrc do
-      run "rvm rvmrc trust \#\{release_path\}"
-    end
-  end
-
-  after "deploy", "rvm:trust_rvmrc"
   after "deploy:update_code", "start_sphinx"
