@@ -9,6 +9,9 @@ set :rvm_type, :user  # Don't use system-wide RVM
 
 require 'bundler/capistrano'
 
+#Try this one
+set :rvm_type, :system
+
 set :user, "root"                                                             #If you log into your server with a different user name than you are logged into your local machine with, you’ll need to tell Capistrano about that user name.
 set :rails_env, "production"
 
