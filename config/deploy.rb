@@ -64,7 +64,8 @@ desc "Prepare system"
   
 desc "Fix permission"
   task :fix_permissions, :roles => :app do
-    run "sudo chmod 777 -R #{current_path}/tmp/" 
+    run "chown -R #{application}:#{application} #{release_path}/tmp/"
+    #run "sudo chmod 777 -R #{current_path}/tmp/" 
   end
     
   after "deploy:update_code", :prepare_system
