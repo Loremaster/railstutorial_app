@@ -61,7 +61,7 @@ desc "Start sphinx"
   
   namespace :rvm do
     task :trust_rvmrc do
-      run \"rvm rvmrc trust \#\{release_path\}\"
+      run "rvm rvmrc trust \#\{release_path\}"
     end
   end
 
