@@ -53,20 +53,19 @@ task :before_update_code, :roles => [:app] do
 end
 
 task :after_update_code, :roles => [:app] do
-  run "cd #{current_path} rake thinking_sphinx:configure && rake thinking_sphinx:start"
+  run "cd #{current_path} rake thinking_sphinx:configure && rake thinking_sphinx:configure && rake thinking_sphinx:start"
 end
 
-#chmod doesn't work, why?
 desc "Prepare system"
   task :prepare_system, :roles => :app do
     run "cd #{current_path} && bundle install --without development test && bundle install --deployment"
   end
   
-desc "Fix permission"
-  task :fix_permissions, :roles => :app do
-    #run "chown -R #{application}:#{application} #{release_path}/tmp/"
-    run "sudo chmod 777 -R #{current_path}/tmp/" 
-  end
+#chmod doesn't work, why?
+# desc "Fix permission"
+#   task :fix_permissions, :roles => :app do
+#     run "sudo chmod 777 -R #{current_path}/tmp/" 
+#   end
     
   after "deploy:update_code", :prepare_system
-  after "deploy:update_code", :fix_permissions
+  # after "deploy:update_code", :fix_permissions
