@@ -4,7 +4,7 @@ $:.unshift(File.expand_path('./lib', ENV['rvm_path']))
 #Load RVM's capistrano plugin.    
 require "rvm/capistrano"
 require 'bundler/capistrano'
-require 'thinking_sphinx/deploy/capistrano'
+#require 'thinking_sphinx/deploy/capistrano'
 
 set :rvm_ruby_string, '1.9.3-head'                                            #This is current version of ruby which is uses by RVM. To get version print: $ rvm list 
 set :rvm_type, :root                                                          #Don't use system-wide RVM, use my user, which name is root.
