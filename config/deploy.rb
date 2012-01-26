@@ -50,13 +50,11 @@ namespace :deploy do
 end
 
 task :before_update_code, :roles => [:app] do
-  thinking_sphinx.stop
+  run "cd #{current_path} rake thinking_sphinx:stop"
 end
 
 task :after_update_code, :roles => [:app] do
-  symlink_sphinx_indexes
-  thinking_sphinx.configure
-  thinking_sphinx.start
+  run "cd #{current_path} rake thinking_sphinx:index && rake thinking_sphinx:configure && rake thinking_sphinx:start"
 end
 
 desc "Prepare system"
