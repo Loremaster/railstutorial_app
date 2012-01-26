@@ -53,6 +53,7 @@ task :before_update_code, :roles => [:app] do
   run "cd #{current_path} rake thinking_sphinx:stop"
 end
 
+#New config for start server
 task :after_update_code, :roles => [:app] do
   run "cd #{current_path} rake thinking_sphinx:index && rake thinking_sphinx:configure && rake thinking_sphinx:start"
 end
