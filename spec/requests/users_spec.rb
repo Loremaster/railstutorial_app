@@ -32,7 +32,7 @@ describe "Users" do
           fill_in "Name",         :with => "Example User"
           fill_in "Email",        :with => "user@example.com"
           fill_in "Password",     :with => "foobar"
-          fill_in "Confirmation", :with => "foobar"
+          fill_in "Password Confirmation", :with => "foobar"
           click_button
           response.should have_selector("div.flash.success",
                                         :content => "Welcome")

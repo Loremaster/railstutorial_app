@@ -1,13 +1,19 @@
 development:
-  bin_path: "/usr/local/bin"
-  searchd_binary_name: searchd
-  indexer_binary_name: indexer
+    port: 9312
+    bin_path: "/usr/local/bin"
+    searchd_binary_name: searchd
+    indexer_binary_name: indexer
 
 test:
-  bin_path: "/usr/local/bin"
-  searchd_binary_name: searchd
-  indexer_binary_name: indexer
+    port: 9313
+    bin_path: "/usr/local/bin"
+    searchd_binary_name: searchd
+    indexer_binary_name: indexer
 
 #production:
     # pid_file: /path/to/app/shared/tmp/searchd.pid
     # searchd_file_path: /path/to/app/shared/db/sphinx
+    
+production:
+    port: 9312
+    
