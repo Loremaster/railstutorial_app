@@ -4,6 +4,7 @@ $:.unshift(File.expand_path('./lib', ENV['rvm_path']))
 #Load RVM's capistrano plugin.    
 require "rvm/capistrano"
 require 'bundler/capistrano'
+require 'thinking_sphinx/deploy/capistrano'
 #require 'thinking_sphinx/deploy/capistrano'
 
 set :rvm_ruby_string, '1.9.3-head'                                            #This is current version of ruby which is uses by RVM. To get version print: $ rvm list 
@@ -48,6 +49,17 @@ namespace :deploy do
      run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
    end
 end
+
+task :before_update_code, :roles => [:app] do
+  thinking_sphinx.stop
+end
+
+task :after_update_code, :roles => [:app] do
+  symlink_sphinx_indexes
+  thinking_sphinx.configure
+  thinking_sphinx.start
+end
+
 
 # task :before_update_code, :roles => [:app] do
 #   run "cd #{current_path} rake thinking_sphinx:stop"
