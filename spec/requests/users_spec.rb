@@ -17,7 +17,7 @@ describe "Users" do
           fill_in "Name",         :with => ""
           fill_in "Email",        :with => ""
           fill_in "Password",     :with => ""
-          fill_in "Confirmation", :with => ""
+          fill_in "Password Confirmation", :with => ""
           click_button
           response.should render_template('users/new')
           response.should have_selector("div#error_explanation")              #error_explanation is CSS shorthand for <div id="error_explanation">...</div>
