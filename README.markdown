@@ -1,5 +1,7 @@
 #**Version 1.1.1b**
 
+ - Few fixes of new errors in tests.
+
  - Added capistrano gem and launched application on the vds.
 
  - Switched from Texticle to Sphinx & Thinking Sphinx.
