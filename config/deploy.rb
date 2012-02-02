@@ -37,9 +37,6 @@ server "188.127.224.136", :app,                                               # 
 #after :deploy, "passenger:restart"
 
 
-# if you're still using the script/reaper helper you will need
-# these http://github.com/rails/irs_process_scripts
-
 # If you are using Passenger mod_rails uncomment this:
 namespace :deploy do
    task :start do ; end
@@ -60,14 +57,14 @@ end
 # end
 
 
-# task :before_update_code, :roles => [:app] do
-#   run "cd #{current_path} rake thinking_sphinx:stop"
-# end
+task :before_update_code, :roles => [:app] do
+  run "cd #{current_path} && rake ts:stop RAILS_ENV=production"
+end
 
 #New config for start server
-# task :after_update_code, :roles => [:app] do
-#   run "cd #{current_path} rake thinking_sphinx:index && rake thinking_sphinx:configure && rake thinking_sphinx:start"
-# end
+task :start_sphinx, :roles => [:app] do
+  run "cd #{current_path} && rake thinking_sphinx:index RAILS_ENV=production && rake thinking_sphinx:configure RAILS_ENV=production && rake thinking_sphinx:start RAILS_ENV=production"
+end
 
 desc "Prepare system"
   task :prepare_system, :roles => :app do
@@ -81,4 +78,4 @@ desc "Prepare system"
 #   end
     
   after "deploy:update_code", :prepare_system
-  # after "deploy:update_code", :fix_permissions
+  after "deploy:update_code", :start_sphinx
