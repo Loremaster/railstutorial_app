@@ -4,7 +4,7 @@ $:.unshift(File.expand_path('./lib', ENV['rvm_path']))
 #Load RVM's capistrano plugin.    
 require "rvm/capistrano"
 require 'bundler/capistrano'
-#require 'thinking_sphinx/deploy/capistrano'
+require 'thinking_sphinx/deploy/capistrano'
 
 set :rvm_ruby_string, '1.9.3-head'                                            #This is current version of ruby which is uses by RVM. To get version print: $ rvm list 
 set :rvm_type, :root                                                          #Don't use system-wide RVM, use my user, which name is root.
@@ -47,10 +47,14 @@ namespace :deploy do
    end
 end
 
-#Stop sphinx server
-before 'deploy:update_code', :roles => [:app] do
-  run "cd #{current_path} && rake thinking_sphinx:stop RAILS_ENV=production"
+task :before_update_code, :roles => [:app] do
+  thinking_sphinx.stop
 end
+
+#Stop sphinx server
+# before 'deploy:update_code', :roles => [:app] do
+#   run "cd #{current_path} && rake thinking_sphinx:stop RAILS_ENV=production"
+# end
 
 #Start sphinx server
 task :start_sphinx, :roles => [:app] do
@@ -70,4 +74,4 @@ desc "Prepare system"
     
   after "deploy:update_code", :prepare_system
   after "deploy:update_code", :start_sphinx
-  after "deploy", "deploy:cleanup"                                            #Clean after new deploy old releases.
+  after "deploy", "deploy:cleanup"                                            #Clean old releases after new deploy except number from :keep_releases.
