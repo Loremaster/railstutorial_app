@@ -71,10 +71,10 @@ desc "Prepare system"
   
 #chmod doesn't work, why?
 desc "Fix permission"
-   task :fix_permissions, :roles => :app do
+   task :fix_permissions, :roles => [ :app, :db, :web ] do
 #     run "sudo chmod 777 -R #{current_path}/tmp/"
-     sudo "chmod 777 -R #{current_path}/tmp"
-     sudo "chmod 777 -R #{current_path}/log"
+     run "chmod 777 -R #{current_path}/tmp"
+     run "chmod 777 -R #{current_path}/log"
    end
     
   after "deploy:update_code", :prepare_system
