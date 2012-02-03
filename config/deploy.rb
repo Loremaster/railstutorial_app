@@ -47,22 +47,12 @@ namespace :deploy do
    end
 end
 
-# task :before_update_code, :roles => [:app] do
-#   thinking_sphinx.stop
-# end
-# 
-# task :after_update_code, :roles => [:app] do
-#   # symlink_sphinx_indexes
-#   thinking_sphinx.configure
-#   thinking_sphinx.start
-# end
-
-
-task :before_update_code, :roles => [:app] do
+#Stop sphinx server
+before 'deploy:update_code', :roles => [:app] do
   run "cd #{current_path} && rake thinking_sphinx:stop RAILS_ENV=production"
 end
 
-#New config for start server
+#Start sphinx server
 task :start_sphinx, :roles => [:app] do
   run "cd #{current_path} && rake thinking_sphinx:index RAILS_ENV=production && rake thinking_sphinx:configure RAILS_ENV=production && rake thinking_sphinx:start RAILS_ENV=production"
 end
