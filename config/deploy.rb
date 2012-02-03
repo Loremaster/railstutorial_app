@@ -49,7 +49,8 @@ end
 
 #Stop sphinx server
 before 'deploy:update_code', :roles => [:app] do
-  run "cd #{current_path} && rake thinking_sphinx:stop RAILS_ENV=production"
+  # run "cd #{current_path} && rake thinking_sphinx:stop RAILS_ENV=production"
+  run "rake thinking_sphinx:stop RAILS_ENV=production"
 end
 
 #Start sphinx server
