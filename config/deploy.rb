@@ -70,14 +70,14 @@ desc "Prepare system"
   end
   
 #chmod doesn't work, why?
-desc "Fix permission"
-   task :fix_permissions, :roles => [ :app, :db, :web ] do
-#     run "sudo chmod 777 -R #{current_path}/tmp/"
-     run "#{try_sudo} chmod 777 -R #{current_path}/tmp"
-     run "#{try_sudo} chmod 777 -R #{current_path}/log"
-   end
+#desc "Fix permission"
+#   task :fix_permissions, :roles => [ :app, :db, :web ] do
+##     run "sudo chmod 777 -R #{current_path}/tmp/"
+#     run "#{try_sudo} chmod 777 -R #{current_path}/tmp"
+#     run "#{try_sudo} chmod 777 -R #{current_path}/log"
+#   end
     
   after "deploy:update_code", :prepare_system
   after "deploy:update_code", :start_sphinx
-  after "deploy:update_code", :fix_permissions
+  #after "deploy:update_code", :fix_permissions
   after "deploy", "deploy:cleanup"                                            #Clean old releases after new deploy except number from :keep_releases.

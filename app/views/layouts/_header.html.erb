@@ -1,28 +1,68 @@
+<!--<header>-->
+  <!--<%= link_to logo, root_path %>-->
+  <!--<nav class="round">-->
+
+    <!--<ul>-->
+      <!--<% if signed_in? %>-->
+        <!--<li><%= render 'shared/search_form' %></li>-->
+      <!--<% end %>-->
+
+      <!--<li><%= link_to "Home", root_path %></li>-->
+
+			<!--<% if signed_in? %>-->
+				<!--<li><%= link_to "Profile",    current_user %></li>-->
+				<!--<li><%= link_to "Microposts", user_microposts_path(:id)%></li>-->
+				<!--<li><%= link_to "Settings",   edit_user_path( current_user ) %></li>-->
+				<!--<li><%= link_to "Users", 	  users_path %></li>-->
+			<!--<% end %>-->
+
+      <!--<li><%= link_to "Help", help_path %></li>-->
+
+      <!--<% if signed_in? %>-->
+        <!--<li><%= link_to "Sign out", signout_path, :method => :delete %></li>-->
+      <!--<% else %>-->
+        <!--<li><%= link_to "Sign in", signin_path %></li>-->
+      <!--<% end %>-->
+    <!--</ul>-->
+  <!--</nav>-->
+<!--</header>-->
+
 <header>
-  <%= link_to logo, root_path %>
-  <nav class="round">
+  <div class="navbar">
+    <div class="navbar-inner">
+      <div class="container">
+        <a class="brand" href="#">
+            Sample app
+        </a>
 
-    <ul>
-      <% if signed_in? %>
-        <li><%= render 'shared/search_form' %></li>
-      <% end %>
+        <form class="navbar-search pull-left">
+            <%= form_tag( searches_find_microposts_path, :method => "get" ) do %>
+              <%= text_field_tag( :q, nil, :class =>"search-query", :placeholder => "Search" ) %>
+            <% end %>
+        </form>
 
-      <li><%= link_to "Home", root_path %></li>
 
-			<% if signed_in? %>
+
+        <ul class="nav">
+            <li><%= link_to "Home", root_path %></li>
+
+            <% if signed_in? %>
 				<li><%= link_to "Profile",    current_user %></li>
 				<li><%= link_to "Microposts", user_microposts_path(:id)%></li>
 				<li><%= link_to "Settings",   edit_user_path( current_user ) %></li>
 				<li><%= link_to "Users", 	  users_path %></li>
 			<% end %>
 
-      <li><%= link_to "Help", help_path %></li>
+            <li><%= link_to "Help", help_path %></li>
 
-      <% if signed_in? %>
-        <li><%= link_to "Sign out", signout_path, :method => :delete %></li>
-      <% else %>
-        <li><%= link_to "Sign in", signin_path %></li>
-      <% end %>
-    </ul>
-  </nav>
+            <% if signed_in? %>
+                <li><%= link_to "Sign out", signout_path, :method => :delete %></li>
+            <% else %>
+                <li><%= link_to "Sign in", signin_path %></li>
+            <% end %>
+        </ul>
+
+      </div>
+    </div>
+  </div>
 </header>
