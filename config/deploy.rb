@@ -14,6 +14,7 @@ set :rails_env, "production"
 
 set :application, "ror_tutorial"
 set :deploy_to, "/vol/www/apps/#{application}"
+set :keep_releases, 3                                                         #Keep only 3 last releases
 
 set :scm, :git
 set :repository,  "git://github.com/Loremaster/sample_app.git"
@@ -79,3 +80,4 @@ desc "Prepare system"
     
   after "deploy:update_code", :prepare_system
   after "deploy:update_code", :start_sphinx
+  after "deploy", "deploy:cleanup"                                            #Clean after new deploy old releases.
