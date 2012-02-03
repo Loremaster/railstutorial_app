@@ -1,4 +1,6 @@
-#**Version 1.1.1b**
+#**Version 1.1.3b**
+
+ - Removed links to delete for posts on search page.
 
  - Few fixes of new errors in tests.
 
