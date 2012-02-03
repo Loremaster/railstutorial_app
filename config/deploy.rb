@@ -73,8 +73,8 @@ desc "Prepare system"
 desc "Fix permission"
    task :fix_permissions, :roles => [ :app, :db, :web ] do
 #     run "sudo chmod 777 -R #{current_path}/tmp/"
-     sudo "chmod -R g+rw #{current_path}/tmp"
-     sudo "chmod -R g+rw #{current_path}/log"
+     run "#{try_sudo} chmod 777 -R #{current_path}/tmp"
+     run "#{try_sudo} chmod 777 -R #{current_path}/log"
    end
     
   after "deploy:update_code", :prepare_system
