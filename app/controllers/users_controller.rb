@@ -5,12 +5,7 @@ class UsersController < ApplicationController
   
   def index
     @title = "All users"
-
-    #if ( params[:q] != '' ) and !( params[:q].nil? )
-      #@users = User.search( params[:q] ).paginate( :page => params[:page] )   # Users that we seek.
-    #else
-      @users = User.paginate( :page => params[:page] )                        # All users.
-    #end
+    @users = User.paginate( :page => params[:page] )                        # All users.
   end
 
   def show
