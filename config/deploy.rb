@@ -47,9 +47,11 @@ namespace :deploy do
    end
 end
 
-task :before_update_code, :roles => [:app] do
-  thinking_sphinx.stop
-end
+#Stop sphinx server
+desc "Stop sphinx server"
+  task :before_update_code, :roles => [:app] do
+    thinking_sphinx.stop
+  end
 
 #Stop sphinx server
 # before 'deploy:update_code', :roles => [:app] do
@@ -57,9 +59,10 @@ end
 # end
 
 #Start sphinx server
-task :start_sphinx, :roles => [:app] do
-  run "cd #{current_path} && rake thinking_sphinx:index RAILS_ENV=production && rake thinking_sphinx:configure RAILS_ENV=production && rake thinking_sphinx:start RAILS_ENV=production"
-end
+desc "Start sphinx server"
+  task :start_sphinx, :roles => [:app] do
+    run "cd #{current_path} && rake thinking_sphinx:index RAILS_ENV=production && rake thinking_sphinx:configure RAILS_ENV=production && rake thinking_sphinx:start RAILS_ENV=production"
+  end
 
 desc "Prepare system"
   task :prepare_system, :roles => :app do
