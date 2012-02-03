@@ -13,7 +13,7 @@
 </ul>
 
 
-<% if @searches.empty? or @searches.nil?  %>                                                    <%#= show posts if we find them %>
+<% if @searches.empty? or @searches.nil?  %>                                  <%#= show posts if we find them %>
 
     <%= render 'no_results_found' %>
 
@@ -21,7 +21,7 @@
 
     <% unless @searches.empty? %>
         <table class="microposts" summary="User microposts">
-            <%= render :partial => 'shared/feed_item', :collection => @searches %>
+            <%= render :partial => 'shared/feed_content', :collection => @searches %>
         </table>
         <%= will_paginate @searches %>
     <% end %>
