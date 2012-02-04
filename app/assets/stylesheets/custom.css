@@ -6,9 +6,9 @@ body {
   background: #cff;
 }
 
-header {
-  padding-top: 0px;
-}
+/*header {*/
+  /*padding-top: 20px;*/
+/*}*/
 
 header img {
   padding: 1em;
@@ -267,6 +267,25 @@ ul.variant_of_content li.current_variant_of_searching {
 }
 
 /*Main page for unauthorized users*/
+
 p.text_of_main_page_for_unauthorized {
     text-align: center;
 }
+
+/*Data from blueprint for flash messages*/
+
+.error, .alert, .notice, .success, .info {padding:0.8em;margin-bottom:1em;border:2px solid #ddd;}
+.error, .alert {background:#fbe3e4;color:#8a1f11;border-color:#fbc2c4;}
+.notice {background:#fff6bf;color:#514721;border-color:#ffd324;}
+.success {background:#e6efc2;color:#264409;border-color:#c6d880;}
+.info {background:#d5edf8;color:#205791;border-color:#92cae4;}
+.error a, .alert a {color:#8a1f11;}
+.notice a {color:#514721;}
+.success a {color:#264409;}
+.info a {color:#205791;}
+
+/*Data from blueprint for elements of table*/
+
+th, td, caption {padding:4px 10px 4px 5px;}
+table, th, td {vertical-align:middle;}
+caption, th, td {text-align:left;font-weight:normal;float:none !important;}

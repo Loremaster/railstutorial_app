@@ -271,7 +271,7 @@ describe UsersController do
         get :edit, :id => @user
         gravatar_url = "http://gravatar.com/emails"
         response.should have_selector("a", :href => gravatar_url,
-                                           :content => "change")
+                                           :content => "Change your avatar")
       end
   end
   
