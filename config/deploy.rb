@@ -69,10 +69,8 @@ desc "Prepare system"
     run "cd #{current_path} && bundle install --without development test && bundle install --deployment"
   end
   
-#chmod doesn't work, why?
 desc "Fix permission"
   task :fix_permissions, :roles => [ :app, :db, :web ] do
-#     run "sudo chmod 777 -R #{current_path}/tmp/"
     run "#{try_sudo} chmod 777 -R #{current_path}/tmp"
     run "#{try_sudo} chmod 777 -R #{current_path}/log"
   end
@@ -80,4 +78,4 @@ desc "Fix permission"
   after "deploy:update_code", :prepare_system
   after "deploy:update_code", :start_sphinx
   after "deploy", "deploy:cleanup"                                            #Clean old releases after new deploy except number from :keep_releases.
-  after "deploy:symlink", :fix_permissions
+  after "deploy:symlink", :fix_permissions                                    #On a side note: deploy:symlink will soon change to deploy:create_symlink, keep that in mind if this breaks after upgrading capistrano to 2.10 or higher.
