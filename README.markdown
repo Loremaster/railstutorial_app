@@ -1,4 +1,8 @@
-#**Version 1.1.3b**
+#**Version 1.2.0b**
+
+ - Now application has new interface via bootstrap 2.0!
+
+------------------------------------------------------------------------------
 
  - Removed links to delete for posts on search page.
 
