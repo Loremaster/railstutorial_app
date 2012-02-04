@@ -13,7 +13,7 @@
   <%= render 'fields', 			      :f => f %>																<%# We use :object => f.object to make partialwork for us. It ctreates variable "object" in partial%>
   <%= render 'notification_settings', :f => f%>
   <div class="actions">
-    <%= f.submit "Update" %>
+    <%= f.submit "Update", :class => "btn-primary" %>
   </div>
 <% end %>
 
