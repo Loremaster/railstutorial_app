@@ -20,8 +20,14 @@
 # Learn more: http://github.com/javan/whenever
 
 
-set :output, "/vol/www/apps/logs/cron_log.log"
+set :output, "/vol/www/apps/logs/cron_log.log"                                #Log for production.
 
-every 1.minute do
-  command "echo 'Hello!'"
+every 20.minutes do
+  command "echo 'Thinking sphinx - starting indexing'"
+  rake "thinking_sphinx:index RAILS_ENV=production"
+  command "echo 'Thinking sphinx - finished indexing'"
 end
+
+
+
+
