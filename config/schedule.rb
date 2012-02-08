@@ -24,7 +24,7 @@ set :output, "/vol/www/apps/logs/cron_log.log"                                #L
 
 every 2.minutes do
   command "echo 'Thinking sphinx - starting indexing'"
-  command "cd /vol/www/apps/ror_tutorial/current && rake thinking_sphinx:index RAILS_ENV=production"
+  rake "thinking_sphinx:index RAILS_ENV=production"
   command "echo 'Thinking sphinx - finished indexing'"
 end
 
