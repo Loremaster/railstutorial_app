@@ -49,9 +49,9 @@ end
 
 #Stop sphinx server
 desc "Stop sphinx server"
-  task :before_update_code, :roles => [:app] do
-    thinking_sphinx.stop
-  end
+task :before_update_code, :roles => [:app] do
+  thinking_sphinx.stop
+end
 
 #Stop sphinx server
 # before 'deploy:update_code', :roles => [:app] do
@@ -60,22 +60,30 @@ desc "Stop sphinx server"
 
 #Start sphinx server
 desc "Start sphinx server"
-  task :start_sphinx, :roles => [:app] do
-    run "cd #{current_path} && rake thinking_sphinx:index RAILS_ENV=production && rake thinking_sphinx:configure RAILS_ENV=production && rake thinking_sphinx:start RAILS_ENV=production"
-  end
+task :start_sphinx, :roles => [:app] do
+  run "cd #{current_path} && rake thinking_sphinx:index RAILS_ENV=production && rake thinking_sphinx:configure RAILS_ENV=production && rake thinking_sphinx:start RAILS_ENV=production"
+end
 
 desc "Prepare system"
-  task :prepare_system, :roles => :app do
-    run "cd #{current_path} && bundle install --without development test && bundle install --deployment"
-  end
+task :prepare_system, :roles => :app do
+  run "cd #{current_path} && bundle install --without development test && bundle install --deployment"
+end
   
 desc "Fix permission"
-  task :fix_permissions, :roles => [ :app, :db, :web ] do
-    run "#{try_sudo} chmod 777 -R #{current_path}/tmp"
-    run "#{try_sudo} chmod 777 -R #{current_path}/log"
+task :fix_permissions, :roles => [ :app, :db, :web ] do
+  run "#{try_sudo} chmod 777 -R #{current_path}/tmp"
+  run "#{try_sudo} chmod 777 -R #{current_path}/log"
+end
+
+namespace :deploy do
+  desc "Update the crontab file"
+  task :update_crontab, :roles => :db do
+    run "cd #{release_path} && whenever --update-crontab #{application}"
   end
+end
     
-  after "deploy:update_code", :prepare_system
-  after "deploy:update_code", :start_sphinx
-  after "deploy", "deploy:cleanup"                                            #Clean old releases after new deploy except number from :keep_releases.
-  after "deploy:symlink", :fix_permissions                                    #On a side note: deploy:symlink will soon change to deploy:create_symlink, keep that in mind if this breaks after upgrading capistrano to 2.10 or higher.
+after "deploy:update_code", :prepare_system
+after "deploy:update_code", :start_sphinx
+after "deploy", "deploy:cleanup"                                            #Clean old releases after new deploy except number from :keep_releases.
+after "deploy:symlink", :fix_permissions                                    #On a side note: deploy:symlink will soon change to deploy:create_symlink, keep that in mind if this breaks after upgrading capistrano to 2.10 or higher.
+after "deploy:symlink", "deploy:update_crontab"
