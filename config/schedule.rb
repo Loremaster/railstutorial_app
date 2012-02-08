@@ -22,9 +22,9 @@
 
 set :output, "/vol/www/apps/logs/cron_log.log"                                #Log for production.
 
-every 20.minutes do
+every 2.minutes do
   command "echo 'Thinking sphinx - starting indexing'"
-  rake "thinking_sphinx:index RAILS_ENV=production"
+  command "rake thinking_sphinx:index RAILS_ENV=production"
   command "echo 'Thinking sphinx - finished indexing'"
 end
 
