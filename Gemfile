@@ -7,6 +7,7 @@ gem 'rack'                                                                    #'
 gem 'rake'                                                                    #Fix error with "couldn't find rake"
 #gem 'texticle', "2.0", :require => 'texticle/rails'
 gem 'thinking-sphinx'
+gem 'whenever', :require => false
 
 #gem 'execjs'
 #gem 'therubyracer', require: "v8"
