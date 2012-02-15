@@ -23,10 +23,10 @@
 set :output, "/vol/www/apps/logs/cron_log.log"                                #Log for production.
 
 every 5.minutes do
-  command "echo 'Thinking sphinx - starting indexing'"
+#  command "echo 'Thinking sphinx - starting indexing'"
   rake "thinking_sphinx:index RAILS_ENV=production"
   rake "thinking_sphinx:rebuild RAILS_ENV=production"
-  command "echo 'Thinking sphinx - finished indexing'"
+  command "chmod 777 -R /vol/www/apps/ror_tutorial/current/log/"              #Fixing losing permissions for log/ folder
 end
 
 
