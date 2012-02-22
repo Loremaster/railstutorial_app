@@ -26,9 +26,5 @@ set :my_path, "/vol/www/apps/ror_tutorial/current"
 every 5.minutes do
   # rake "thinking_sphinx:index RAILS_ENV=production"
   # rake "thinking_sphinx:rebuild RAILS_ENV=production"
-  command "cd #{my_path} && bundle exec rake thinking_sphinx:index RAILS_ENV=production && bundle exec rake thinking_sphinx:rebuild RAILS_ENV=production && chmod 777 -R /vol/www/apps/ror_tutorial/current/log"
+  command "cd #{my_path} && bundle exec rake thinking_sphinx:index RAILS_ENV=production && bundle exec rake thinking_sphinx:rebuild RAILS_ENV=production && chmod 777 -R #{my_path}/log"
 end
-
-
-
-
