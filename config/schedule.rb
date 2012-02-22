@@ -21,11 +21,12 @@
 
 
 set :output, "/vol/www/apps/logs/cron_log.log"                                #Log for production.
+set :my_path, "/vol/www/apps/ror_tutorial/current"
 
 every 5.minutes do
-#  command "echo 'Thinking sphinx - starting indexing'"
-  rake "thinking_sphinx:index RAILS_ENV=production"
-  rake "thinking_sphinx:rebuild RAILS_ENV=production"
+  # rake "thinking_sphinx:index RAILS_ENV=production"
+  # rake "thinking_sphinx:rebuild RAILS_ENV=production"
+  command "cd #{my_path} && bundle exec rake thinking_sphinx:index RAILS_ENV=production && bundle exec rake thinking_sphinx:rebuild RAILS_ENV=production && chmod 777 -R /vol/www/apps/ror_tutorial/current/log"
 end
 
 
